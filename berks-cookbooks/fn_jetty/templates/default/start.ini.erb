@@ -1,0 +1,27 @@
+# Enabled modules
+
+--module=home-base-warning
+--module=ext
+--module=resources
+--module=server
+--module=http
+--module=ssl
+--module=https
+--module=deploy
+--module=jsp
+--module=websocket
+--module=jstl
+--module=rewrite
+
+# HTTP Config
+
+jetty.http.port=<%= node[:jetty][:http][:port] %>
+
+# SSL and HTTPS
+
+jetty.httpConfig.securePort=<%= node[:jetty][:https][:port] %>
+jetty.sslContext.keyStorePath=etc/keystore
+jetty.sslContext.trustStorePath=etc/keystore
+jetty.sslContext.keyStorePassword=OBF:1wfq1nes1u2y1z7g1san1z7m1u2c1nay1wg8
+jetty.sslContext.keyManagerPassword=OBF:1wfq1nes1u2y1z7g1san1z7m1u2c1nay1wg8
+jetty.sslContext.trustStorePassword=OBF:1wfq1nes1u2y1z7g1san1z7m1u2c1nay1wg8

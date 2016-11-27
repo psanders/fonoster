@@ -1,0 +1,33 @@
+{
+  "name": "fn_asterisk",
+  "description": "Installs/Configures asterisk",
+  "long_description": "# README for Fonoster Asterisk\n\nTODO: Enter the cookbook description here.\n\n",
+  "maintainer": "Pedro S. Sanders",
+  "maintainer_email": "psanders@fonoster.com",
+  "license": "all_rights",
+  "platforms": {
+  },
+  "dependencies": {
+    "users": ">= 0.0.0",
+    "chef-solo-search": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.0",
+  "source_url": "",
+  "issues_url": ""
+}

@@ -1,0 +1,6 @@
+[didlogic-cntx]
+exten => _X.,1,Answer
+exten => _X.,2,SendDTMF(${initDigits})
+exten => _X.,3,AMD
+exten => _X.,n,agi(agi://${astivedHost}:${astivedPort}/fn/FonosterJS?callId=${callId}&amdStatus=${AMDSTATUS}&initDigits=${initDigits}&timeout=${timeout}&record=${record})
+exten => _X.,n,Hangup

@@ -1,0 +1,72 @@
+{
+  "_id": {
+    "$oid": "5678c1a440307c529ceb66c6"
+  },
+  "className": "com.fonoster.model.PhoneNumber",
+  "countryISOCode": "DO",
+  "created": {
+    "t": {
+      "$numberLong": "1450754468389"
+    },
+    "z": "UTC"
+  },
+  "mmsEnabled": false,
+  "modified": {
+    "t": {
+      "$numberLong": "1450754468389"
+    },
+    "z": "UTC"
+  },
+  "number": "+18296072077",
+  "preferred": false,
+  "provider": {
+    "$id": {
+      "$oid": "562b7a2ec90a7eb3088a126a"
+    },
+    "$ref": "ServiceProvider"
+  },
+  "smsEnabled": false,
+  "status": "ACTIVE",
+  "user": {
+    "$id": "john@doe.com",
+    "$ref": "User"
+  },
+  "voiceEnabled": true,
+  "apiVersion": "v1"
+}
+{
+  "_id": {
+    "$oid": "5678c1a440307c529ceb66c7"
+  },
+  "className": "com.fonoster.model.PhoneNumber",
+  "countryISOCode": "US",
+  "created": {
+    "t": {
+      "$numberLong": "1450754468420"
+    },
+    "z": "UTC"
+  },
+  "mmsEnabled": false,
+  "modified": {
+    "t": {
+      "$numberLong": "1450754468420"
+    },
+    "z": "UTC"
+  },
+  "number": "+17066041487",
+  "preferred": true,
+  "provider": {
+    "$id": {
+      "$oid": "562b7a2ec90a7eb3088a126a"
+    },
+    "$ref": "ServiceProvider"
+  },
+  "smsEnabled": false,
+  "status": "ACTIVE",
+  "user": {
+    "$id": "john@doe.com",
+    "$ref": "User"
+  },
+  "voiceEnabled": true,
+  "apiVersion": "v1"
+}

@@ -1,0 +1,13 @@
+# This disk use by MongoDB
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv0001
+spec:
+  capacity:
+    storage: 200Gi
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: disk0001
+    fsType: ext4

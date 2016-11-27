@@ -1,0 +1,48 @@
+# The configuration for the QA enviroment is slighly different
+# to avoid using more disk in GCP
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fnmongodb
+  labels:
+    app: fonoster
+spec:
+  ports:
+    - port: 27017
+  selector:
+    app: fonoster
+    tier: data
+  clusterIP: None
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: fnmongodb
+  labels:
+    app: fonoster
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fonoster
+        tier: data
+    spec:
+      containers:
+      - name: fnmongodb
+        image: gcr.io/fonoster-app/fnmongodb:1.0
+        imagePullPolicy: Always
+        env:
+        - name: FONOSTER_ENV
+          value: qa               # This will create initial data in the db
+        ports:
+        - containerPort: 27017
+          name: mongodb
+        volumeMounts:
+        - name: mongo-storage
+          mountPath: /var/lib/mongodb
+      volumes:
+        - name: mongo-storage
+          emptyDir: {}

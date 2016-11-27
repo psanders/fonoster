@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: fnast
+    labels:
+        app: fonoster
+spec:
+    ports:
+    - name: ami
+      port: 5038
+    selector:
+      app: fonoster
+      tier: gateway
+    type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: fnast
+  labels:
+    app: fonoster
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fonoster
+        tier: gateway
+    spec:
+      containers:
+      - name: fnast
+        image: gcr.io/fonoster-app/fnast:1.0
+        imagePullPolicy: Always
+        env:
+        - name: ASTIVED_HOST
+          value: fnapp
+        ports:
+        - containerPort: 5038
+          name: ami
+        volumeMounts:
+        - name: pd
+          mountPath: /var/lib/fonoster
+      volumes:
+      - name: pd
+        persistentVolumeClaim:
+          claimName: pvc0002

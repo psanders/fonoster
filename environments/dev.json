@@ -1,0 +1,6 @@
+{
+  "name": "dev",
+  "description": "Development Mode",
+  "json_class": "Chef::Environment",
+  "chef_type": "environment"
+}

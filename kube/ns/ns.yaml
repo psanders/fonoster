@@ -1,0 +1,13 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: prod
+  labels:
+    app: fonoster
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: qa
+  labels:
+    app: fonoster

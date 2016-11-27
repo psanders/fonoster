@@ -1,0 +1,14 @@
+{
+  "_id": {
+    "$oid": "562b7b0cc90a7eb322892c9c"
+  },
+  "className": "com.fonoster.model.Broadcast",
+  "created": {
+    "t": {
+      "$numberLong": "1445690124125"
+    },
+    "z": "UTC"
+  },
+  "message": "Hooray Fonoster!",
+  "apiVersion": "v1"
+}

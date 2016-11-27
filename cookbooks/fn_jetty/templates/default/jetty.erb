@@ -1,0 +1,7 @@
+JAVA_HOME=/usr/bin/java
+JETTY_HOME=<%= node[:jetty][:home] %>
+JETTY_BASE=<%= node[:jetty][:base] %>
+NO_START=0
+JETTY_ARGS=jetty.port=<%= node[:jetty][:http][:port] %>
+JETTY_HOST=0.0.0.0
+#JETTY_USER=jetty

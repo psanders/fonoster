@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: fnapp
+    labels:
+        app: fonoster
+spec:
+    ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+    - name: https
+      port: 443
+      targetPort: 8443
+    - name: fastagi
+      port: 4573
+    selector:
+      app: fonoster
+      tier: frontend
+    type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: fnapp
+  labels:
+    app: fonoster
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fonoster
+        tier: frontend
+    spec:
+      containers:
+      - name: fnapp
+        image: gcr.io/fonoster-app/fnapp:1.0
+        imagePullPolicy: Always
+        env:
+        - name: DB_HOST
+          value: fnmongodb
+        - name: MANAGER_HOST
+          value: fnast
+        ports:
+        - containerPort: 8080
+          name: http
+        - containerPort: 4573
+          name: fastagi
+        volumeMounts:
+        - name: pd
+          mountPath: /var/lib/fonoster
+      volumes:
+      - name: pd
+        persistentVolumeClaim:
+          claimName: pvc0002
