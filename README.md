@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-Fonoster Chef-repo
-==================
+# Fonoster CI/CD
+                            
+### Integration Tests
 
 To get chef-repo ready for chef-solo you must run 'berks vendor'.
-=======
-Fonoster CI/CD
-==============
-
-                            
-Integration Tests
------------------
 
 Run `verify` phase of maven with 'ti' profile to run integration-test an generate docker images for fonoster app, 
 mongodb and asterisk.
@@ -46,4 +39,4 @@ variables can be use to replace the defaults (at /etc/fonoster.conf):
 
 * Pedro Sanders
 * Eudris Cabrera
->>>>>>> d86c6001f2541dbbc4025b48d7ab3621ca9283be
+
