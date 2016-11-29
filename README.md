@@ -15,10 +15,11 @@ and run this:
 ```
 mvn docker:start -Pit
 cd webui
+mvn install
 mvn jetty:run
 ```
 
-You can now make changes in webui and see those changes at http://localhost:8080
+You can now make changes in webui and see those changes at http://localhost:8181
 
 All of the containers are loosely couple. They connect to each other via exposed services. The following environment 
 variables can be use to replace the defaults (at /etc/fonoster.conf):
