@@ -11,7 +11,7 @@ NAMESPACE=$1
 TAG=$2
 
 # Update deployment resources tag and pv/pvc name
-sed -i "s/:1.0/:$TAG/" /opt/fn/resources/deployment/*.yaml
+sed -i "s/IMAGE_VERSION/$TAG/" /opt/fn/resources/deployment/*.yaml
 
 if [ "$NAMESPACE" = "qa" ]; then
     kubectl --namespace=$NAMESPACE apply -f /opt/fn/resources/deployment/mongodb-qa.yaml

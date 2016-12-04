@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: fnapp
-        image: gcr.io/fonoster-app/fnapp:1.0
+        image: gcr.io/fonoster-app/fnapp:IMAGE_VERSION
         imagePullPolicy: Always
         env:
         - name: DB_HOST

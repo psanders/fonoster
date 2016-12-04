@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: fnast
-        image: gcr.io/fonoster-app/fnast:1.0
+        image: gcr.io/fonoster-app/fnast:IMAGE_VERSION
         imagePullPolicy: Always
         env:
         - name: ASTIVED_HOST
