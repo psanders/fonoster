@@ -1,5 +1,5 @@
-README for NFS installation, configuration and maintance
-========================================================
+README for NFS installation, configuration and maintenance
+==========================================================
 
 Prerequisite
 ------------
@@ -16,3 +16,5 @@ Cronjob
 * * * * * sh -c "chown -R nobody:nogroup /mnt/disk0002/recordings"
 * * * * * sh -c "chown -R nobody:nogroup /mnt/disk0002/qa/recordings"
 ```
+
+WARN: This will cause performance issues as we get more files on the server 

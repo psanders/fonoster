@@ -8,7 +8,7 @@ bash 'add mongodb-org keyserver' do
       echo "Keyserver #{node[:mongodb][:package][:key]} is already installed";
     else
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv #{node[:mongodb][:package][:key]}
-        echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/#{node[:mongodb][:package][:version]} multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-#{node[:mongodb][:package][:version]}.list
+        echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/#{node[:mongodb][:package][:version]} multiverse" | tee /etc/apt/sources.list.d/mongodb-org-#{node[:mongodb][:package][:version]}.list
         apt-get update
         apt-get install -y mongodb-org
     fi
@@ -19,7 +19,8 @@ template "/etc/mongod.conf" do
     source 'mongod.conf.erb'
 end
 
-service 'mongod' do
-  supports :status => true
-  action [:enable, :stop, :start]
-end
+# Deprecated
+#service 'mongod' do
+#  supports :status => false
+#  action [:enable, :stop, :start]
+#end

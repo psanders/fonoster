@@ -1,0 +1,45 @@
+version: '2'
+services:
+  fncd:
+    build:
+      context: .
+      dockerfile: dockerfile-cd
+    image: gcr.io/fonoster-app/fncd:latest
+  fnast:
+    build:
+      context: .
+      dockerfile: dockerfile-ast
+    image: grc.io/fonoster-app/fnast:latest
+    volumes:
+      - /opt/rallypoint/media/recordings:/var/lib/fonoster/recordings
+      - /opt/rallypoint/media/tts:/var/lib/fonoster/tts
+    ports:
+      - '5038:5038'
+      - '5060:5060'
+      - '5061:5061'
+  fnmongodb:
+    build:
+      context: .
+      dockerfile: dockerfile-mongodb
+    image: grc.io/fonoster-app/fnmongodb:latest
+    environment:
+      - FONOSTER_ENV='dev'
+    ports:
+      - '27017:27017'
+  fnapp:
+    build:
+      context: .
+      dockerfile: dockerfile-app
+    image: grc.io/fonoster-app/fnapp:latest
+    volumes:
+      - /opt/rallypoint/media/recordings:/var/lib/fonoster/recordings
+      - /opt/rallypoint/media/tts:/var/lib/fonoster/tts
+      - /opt/rallypoint/webapps:/opt/app-base/webapps
+      - /opt/rallypoint/voiceapps:/opt/astive/apps
+    environment:
+      - DB_HOST='fnmongodb'
+      - MANAGER_HOST='fnast'
+    ports:
+      - '8181:8080'
+      - '8443:8443'
+      - '4573:4573'

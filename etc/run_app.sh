@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Start astived
 /opt/astive/bin/astived start &

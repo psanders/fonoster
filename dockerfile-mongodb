@@ -1,0 +1,17 @@
+FROM ubuntu:16.04
+MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
+
+RUN apt-get -yqq update
+RUN apt-get -yqq install curl lsb-release
+RUN curl -L https://getchef.com/chef/install.sh | bash -s -- -v 12.9.41
+RUN apt-get -yqq clean
+
+ADD . /var/chef-repo/
+RUN /usr/bin/chef-solo -o "role[mongodb]" -c /var/chef-repo/etc/solo.rb
+
+EXPOSE 27017
+
+RUN chmod +x /var/chef-repo/etc/run_mongodb.sh
+
+ENTRYPOINT ["/bin/sh"]
+CMD ["/var/chef-repo/etc/run_mongodb.sh"]
