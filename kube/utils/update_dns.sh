@@ -17,10 +17,10 @@ echo "Updating record-set for namespace=$NAMESPACE and zone=$DNS_ZONE"
 # Update DNS records if needed
 if [ "$NAMESPACE" = "prod" ]; then
     sed -i "s/<IP>/$IP/" /opt/fn/resources/dns/fn-dns.yaml
-    gcloud dns record-sets import /opt/fn/resources/dns/fn-dns.yaml --zone=$DNS_ZONE
+    gcloud dns -- record-sets import /opt/fn/resources/dns/fn-dns.yaml --zone=$DNS_ZONE
 elif [ "$NAMESPACE" = "qa" ]; then
     sed -i "s/<IP>/$IP/" /opt/fn/resources/dns/fn-dns-qa.yaml
-    gcloud dns record-sets import /opt/fn/resources/dns/fn-dns-qa.yaml --zone=$DNS_ZONE
+    gcloud dns -- record-sets import /opt/fn/resources/dns/fn-dns-qa.yaml --zone=$DNS_ZONE
 else
     echo "Unexpected NAMESPACE: $NAMESPACE"
 fi

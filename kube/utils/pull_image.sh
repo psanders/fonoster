@@ -2,4 +2,4 @@
 
 . `dirname "$0"`/setup.cfg
 
-gcloud docker -- push $1
+gcloud docker -- pull $1

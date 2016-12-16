@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: dockerfile-cd
-    image: gcr.io/fonoster-app/fncd:latest
+    image: fncd:latest
   fnast:
     build:
       context: .
