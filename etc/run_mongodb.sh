@@ -9,7 +9,7 @@ mongod --config /etc/mongod.conf --fork --logpath /var/log/mongodb.log
 sleep 3
 mongo $db $repo/etc/dbUser.js
 
-if [ "$FONOSTER_ENV" -eq "dev" ]
+if [ "$FONOSTER_ENV" = "dev" ]
 then
     ./$repo/etc/init_db.sh $repo/data_bags/init_db
 fi

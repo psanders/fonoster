@@ -1,6 +1,5 @@
 # The configuration for the QA enviroment is slighly different
 # to avoid using more disk in GCP
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -36,7 +35,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: FONOSTER_ENV
-          value: qa               # This will create initial data in the db
+          value: dev               # This will create initial data in the db
         ports:
         - containerPort: 27017
           name: mongodb

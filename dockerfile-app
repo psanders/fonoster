@@ -13,8 +13,6 @@ EXPOSE 4573
 EXPOSE 8080
 EXPOSE 8443
 
-VOLUME ["/opt/app-base"]
-
 RUN chmod +x /var/chef-repo/etc/run_app.sh
 
 ENTRYPOINT ["/bin/sh"]
