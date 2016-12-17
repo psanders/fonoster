@@ -3,7 +3,7 @@ kind: Service
 metadata:
     name: site
     labels:
-        app: fonoster
+      app: site
 spec:
     ports:
     - name: http
@@ -13,28 +13,28 @@ spec:
       port: 443
       targetPort: 8443
     selector:
-      app: fonoster
+      app: site
       tier: frontend
     type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: fnsite
+  name: site
   labels:
-    app: fonoster
+    app: site
 spec:
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: fonoster
+        app: site
         tier: frontend
     spec:
       containers:
       - name: fnsite
-        image: gcr.io/fonoster-app/fnsite:IMAGE_VERSION
+        image: gcr.io/fonoster-app/fnsite:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
