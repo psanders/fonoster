@@ -7,17 +7,13 @@ var doNotCall = 0;
 
 while(calls.hasNext()) {
     var call = calls.next();
-
-    total += 1;
-
+ 
     // Calling my self does not count :P
     if (call.to == '+17853178070') continue;
     if (call.duration > 0) completed += 1;
     if (call.vars && call.vars.select && call.vars.select == 1)  engaged += 1;
     if (call.vars && call.vars.select && call.vars.select == 5)  doNotCall += 1;
-
-    if (call.vars && call.vars.select)
-        print(JSON.stringify(call.to));
+    total += 1;
 }
 
 print ("Call Analytics:");
