@@ -19,7 +19,8 @@ COPY kube/utils/        /opt/fn/scripts
 
 RUN chmod +x /opt/fn/scripts/*
 
-RUN wget https://github.com/fonoster/astivetoolkit/archive/v1.0.5.tar.gz \
-    && tar -xvf v1.0.5.tar.gz \
-    && cd astivetoolkit-1.0.5 \
+# Considered put this in a file in root of the ops folder
+RUN wget https://github.com/fonoster/astivetoolkit/archive/v1.0.6.tar.gz \
+    && tar -xvf v1.0.6.tar.gz \
+    && cd astivetoolkit-1.0.6 \
     && mvn install

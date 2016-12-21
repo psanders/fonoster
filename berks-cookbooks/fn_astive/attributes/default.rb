@@ -1,5 +1,5 @@
 # Astive Config
-default['astive']['file']               = 'astivetoolkit-server-1.0.5'
+default['astive']['file']               = 'astivetoolkit-server-1.0.6'
 default['astive']['home']               = '/opt/astive'
 default['astive']['user']               = 'astive'
 default['astive']['group']              = 'astive'
