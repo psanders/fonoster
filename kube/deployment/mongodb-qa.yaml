@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: fnmongodb
-        image: gcr.io/fonoster-app/fnmongodb:IMAGE_VERSION
+        image: gcr.io/fonoster-app/fnmongodb:
         imagePullPolicy: Always
         env:
         - name: FONOSTER_ENV
