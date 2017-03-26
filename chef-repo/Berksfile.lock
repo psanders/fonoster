@@ -1,0 +1,36 @@
+DEPENDENCIES
+  fn_asterisk
+    path: cookbooks/fn_asterisk
+  fn_astive
+    path: cookbooks/fn_astive
+  fn_commons
+    path: cookbooks/fn_commons
+  fn_jetty
+    path: cookbooks/fn_jetty
+  fn_mongodb
+    path: cookbooks/fn_mongodb
+  fn_sipio
+    path: cookbooks/fn_sipio
+
+GRAPH
+  chef-solo-search (0.5.1)
+  fn_asterisk (0.1.0)
+    chef-solo-search (>= 0.0.0)
+    users (>= 0.0.0)
+  fn_astive (0.1.0)
+    chef-solo-search (>= 0.0.0)
+    java_se (~> 8.121.0)
+    users (>= 0.0.0)
+  fn_commons (0.1.0)
+    chef-solo-search (>= 0.0.0)
+    users (>= 0.0.0)
+  fn_jetty (0.1.0)
+    chef-solo-search (>= 0.0.0)
+    java_se (~> 8.121.0)
+    users (>= 0.0.0)
+  fn_mongodb (0.1.1)
+  fn_sipio (0.1.0)
+    chef-solo-search (>= 0.0.0)
+    users (>= 0.0.0)
+  java_se (8.121.0)
+  users (4.0.3)

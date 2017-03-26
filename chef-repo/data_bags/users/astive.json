@@ -1,0 +1,5 @@
+{
+	"id":"astive",
+	"groups": ["astive"],
+	"shell": "\/sbin\/nologin"
+}

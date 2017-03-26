@@ -1,0 +1,27 @@
+FROM google/cloud-sdk:latest
+MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
+
+RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
+RUN apt-get -y install python-software-properties
+RUN add-apt-repository ppa:webupd8team/java
+RUN apt-get update -y
+RUN apt-get -y install openjdk-8-jdk
+RUN apt-get -y install maven
+RUN apt-get install -yq ruby ruby-dev build-essential git curl
+RUN curl -L https://www.opscode.com/chef/install.sh | bash
+RUN curl -sSL https://get.docker.com/ | sh
+
+RUN /opt/chef/embedded/bin/gem install --no-ri --no-rdoc berkshelf
+RUN mkdir -p /opt/fn/scripts && mkdir /opt/fn/credentials
+
+COPY kube/                      /opt/fn/resources
+COPY etc/gce_credentials.json   /opt/fn/credentials
+COPY kube/utils/                /opt/fn/scripts
+
+RUN chmod +x /opt/fn/scripts/*
+
+# Consider put this in a file in root of the ops folder
+RUN wget https://github.com/fonoster/astivetoolkit/archive/v1.0.6.tar.gz \
+    && tar -xvf v1.0.6.tar.gz \
+    && cd astivetoolkit-1.0.6 \
+    && mvn install

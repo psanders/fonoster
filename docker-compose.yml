@@ -1,26 +1,24 @@
-version: '2'
+version: '2.1'
 services:
-  fncd:
-    build:
-      context: .
-      dockerfile: dockerfile-cd
-    image: grc.io/fonoster-app/fncd:latest
+  #fncd:
+  #  build:
+  #    context: .
+  #    dockerfile: dockerfile-cd
+  #  image: grc.io/fonoster-app/fncd:latest
   fnast:
     build:
       context: .
-      dockerfile: dockerfile-ast
+      dockerfile: etc/docker-files/dockerfile-ast
     image: grc.io/fonoster-app/fnast:latest
     volumes:
       - /opt/rallypoint/media/recordings:/var/lib/fonoster/recordings
       - /opt/rallypoint/media/tts:/var/lib/fonoster/tts
     ports:
       - '5038:5038'
-      - '5060:5060'
-      - '5061:5061'
   fnmongodb:
     build:
       context: .
-      dockerfile: dockerfile-mongodb
+      dockerfile: etc/docker-files/dockerfile-mongodb
     image: grc.io/fonoster-app/fnmongodb:latest
     environment:
       - FONOSTER_ENV='dev'
@@ -29,7 +27,7 @@ services:
   fnapp:
     build:
       context: .
-      dockerfile: dockerfile-app
+      dockerfile: etc/docker-files/dockerfile-appbase
     image: grc.io/fonoster-app/fnapp:latest
     volumes:
       - /opt/rallypoint/media/recordings:/var/lib/fonoster/recordings
@@ -43,3 +41,9 @@ services:
       - '8181:8080'
       - '8443:8443'
       - '4573:4573'
+      - '5060:5060'
+      - '5061:5061'
+      - '5062:5062'
+      - '5060/udp:5060/udp'
+      - '5061/udp:5061/udp'
+      - '5062/udp:5062/udp'

@@ -1,8 +1,0 @@
-AllCops:
-  Exclude:
-    - vendor/**/*
-    - .kitchen/*
-
-LineLength:
-  Enabled: true
-  Max: 120

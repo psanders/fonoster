@@ -1,5 +1,0 @@
-{
-	"id":"jetty",
-	"groups": ["jetty"],
-	"shell": "\/sbin\/nologin"
-}

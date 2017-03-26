@@ -1,0 +1,6 @@
+[fnus1]
+exten => ms,1,Answer
+exten => ms,2,SendDTMF(${initDigits})
+exten => ms,3,AMD
+exten => ms,n,agi(agi://${astivedHost}:${astivedPort}/fn/FonosterJS?callId=${callId}&amdStatus=${AMDSTATUS}&initDigits=${initDigits}&timeout=${timeout}&record=${record})
+exten => ms,n,Hangup

@@ -1,0 +1,14 @@
+{
+  "name": "prod",
+  "description": "Production Environment",
+  "override_attributes": {
+    "astive": {
+      "host": "localhost"
+    },
+    "fonoster": {
+      "repo": "master"
+    }
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment"
+}

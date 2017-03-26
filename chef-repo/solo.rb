@@ -1,0 +1,5 @@
+file_cache_path     "/var/chef-repo/tmp"
+cookbook_path       "/var/chef-repo/berks-cookbooks"
+data_bag_path       "/var/chef-repo/data_bags"
+role_path           "/var/chef-repo/roles"
+environment_path    "/var/chef-repo/environments"

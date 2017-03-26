@@ -1,0 +1,7 @@
+# Astived server configuration
+server      = org.astivetoolkit.server.AstiveServer
+bind        = <%= node[:astived][:bindAddr] %>
+port        = <%= node[:astived][:bindPort] %>
+disabled    = false
+threads     = <%= node[:astived][:threads] %>
+onlyFrom    = <%= node[:astived][:onlyFrom] %>
