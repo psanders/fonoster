@@ -15,7 +15,7 @@
 nodes/
 clients/
 astivetoolkit/
-berks-cookbook
+berks-cookbooks/
 # eclipse
 .classpath
 .project

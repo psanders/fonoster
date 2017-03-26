@@ -1,7 +1,0 @@
-DEPENDENCIES
-  java_se
-    path: .
-    metadata: true
-
-GRAPH
-  java_se (8.121.0)
