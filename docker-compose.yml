@@ -1,10 +1,5 @@
 version: '2.1'
 services:
-  #fncd:
-  #  build:
-  #    context: .
-  #    dockerfile: dockerfile-cd
-  #  image: grc.io/fonoster-app/fncd:latest
   fnast:
     build:
       context: .
@@ -28,7 +23,7 @@ services:
     build:
       context: .
       dockerfile: etc/docker-files/dockerfile-appbase
-    image: grc.io/fonoster-app/fnapp:latest
+    image: grc.io/fonoster-app/fnapp_base:latest
     volumes:
       - /opt/rallypoint/media/recordings:/var/lib/fonoster/recordings
       - /opt/rallypoint/media/tts:/var/lib/fonoster/tts
