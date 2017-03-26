@@ -10,7 +10,7 @@ They are other requirements, but they are part of a package and should be mainta
 * Docker 17.03+
 * GCloud SDK
 
-To correctly run the application in a local environment you must create the following directories and share
+To correctly run the infrastructure in a local environment you must create the following directories and share
 those files with Docker.
 
 ```
@@ -18,23 +18,6 @@ those files with Docker.
 /opt/rallypoint/media/tts
 /opt/rallypoint/webapps
 /opt/rallypoint/voiceapp
-```
-
-## Developer Mode
-
-In order to run in "developer mode" yo must follow next two steps:
-
-1. Go to Fonoster Operations folder (fnops) and run the command:
-
-```
-docker-compose up
-```
-
-2. In the Fonoster Apps folder (fnmodules) run Jetty by running the next command:
-
-```
-cd fnmodules/webui
-mvn jetty:run
 ```
 
 You can now make changes in webui and see those changes at http://localhost:8181
