@@ -9,6 +9,7 @@ They are other requirements, but they are part of a package and should be mainta
 * Java 1.8+
 * Docker 17.03+
 * GCloud SDK
+* Berks
 
 To correctly run the infrastructure in a local environment you must create the following directories and share
 those files with Docker.
