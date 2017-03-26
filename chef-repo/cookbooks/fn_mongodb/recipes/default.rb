@@ -19,8 +19,3 @@ template "/etc/mongod.conf" do
     source 'mongod.conf.erb'
 end
 
-# Deprecated
-#service 'mongod' do
-#  supports :status => false
-#  action [:enable, :stop, :start]
-#end
