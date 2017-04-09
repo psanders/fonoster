@@ -3,7 +3,7 @@ kind: Service
 metadata:
     name: fnapp
     labels:
-        app: fonoster
+      app: fonoster
 spec:
     ports:
     - name: http
@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: fnapp
-        image: gcr.io/fonoster-app/fnapp:IMAGE_VERSION
+        image: gcr.io/fonoster-app/fnapp:latest
         imagePullPolicy: Always
         env:
         - name: DB_HOST
@@ -44,6 +44,9 @@ spec:
         - name: MANAGER_HOST
           value: fnast
         ports:
+        - containerPort: 5060
+          name: sip
+          protocol: UDP
         - containerPort: 8080
           name: http
         - containerPort: 4573
