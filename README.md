@@ -11,14 +11,14 @@ They are other requirements, but they are part of a package and should be mainta
 * GCloud SDK
 * Berks
 
-To correctly run the infrastructure in a local environment you must create the following directories and share
-those files with Docker.
+To run the infrastructure in your local environment you must create the following directories and share
+those files with Docker. This files will be use to create volumes and share some of the apps data.
 
 ```
 /opt/rallypoint/media/recordings
 /opt/rallypoint/media/tts
 /opt/rallypoint/webapps
-/opt/rallypoint/voiceapp
+/opt/rallypoint/voiceapps
 ```
 
 You can now make changes in webui and see those changes at http://localhost:8181
