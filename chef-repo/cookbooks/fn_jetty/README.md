@@ -58,4 +58,4 @@ This recipe:
 # License and Authors
 
 * Author: Pedro Sanders <fonosterteam@fonoster.com>
-* Copyright 2016, Fonoster Inc
+* Copyright 2017, Fonoster Inc
