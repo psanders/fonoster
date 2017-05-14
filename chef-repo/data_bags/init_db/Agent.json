@@ -1,0 +1,74 @@
+{
+  "_id": {
+    "$oid": "591525da43def1148fae24ee"
+  },
+  "className": "com.fonoster.model.Agent",
+  "created": {
+    "t": {
+      "$numberLong": "1494558170860"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "modified": {
+    "t": {
+      "$numberLong": "1494558170841"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "user": {
+    "$ref": "User",
+    "$id": "john@doe.com"
+  },
+  "deleted": false,
+  "apiVersion": "v1",
+  "kind": "Agent",
+  "metadata": {
+    "name": "John Doe"
+  },
+  "spec": {
+    "credentials": {
+      "username": "john",
+      "secret": "1234"
+    },
+    "domains": [
+      "sip.ocean.com"
+    ]
+  }
+}
+{
+  "_id": {
+    "$oid": "59152b1043def115946ab837"
+  },
+  "className": "com.fonoster.model.Agent",
+  "created": {
+    "t": {
+      "$numberLong": "1494559504533"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "modified": {
+    "t": {
+      "$numberLong": "1494559504517"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "user": {
+    "$ref": "User",
+    "$id": "john@doe.com"
+  },
+  "deleted": false,
+  "apiVersion": "v1",
+  "kind": "Agent",
+  "metadata": {
+    "name": "Janie Doe"
+  },
+  "spec": {
+    "credentials": {
+      "username": "janie",
+      "secret": "1234"
+    },
+    "domains": [
+      "sip.ocean.com"
+    ]
+  }
+}

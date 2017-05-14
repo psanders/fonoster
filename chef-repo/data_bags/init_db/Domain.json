@@ -1,0 +1,31 @@
+{
+  "_id": "sip%46ocean%46com",
+  "className": "com.fonoster.model.Domain",
+  "created": {
+    "t": {
+      "$numberLong": "1494458173149"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "modified": {
+    "t": {
+      "$numberLong": "1494458173122"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "user": {
+    "$ref": "User",
+    "$id": "john@doe.com"
+  },
+  "deleted": false,
+  "apiVersion": "v1",
+  "kind": "Domain",
+  "metadata": {
+    "name": "Ocean Sip Domain"
+  },
+  "spec": {
+    "context": {
+      "domainUri": "sip%46ocean%46com"
+    }
+  }
+}
