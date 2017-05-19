@@ -1,6 +1,4 @@
 # Cooking Asterisk
-
-# TODO: Lock to the desired version(11?)
 package 'asterisk' do
    action :upgrade
 end

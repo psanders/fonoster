@@ -3,6 +3,8 @@ default[:fonoster][:user]           = 'fonoster'
 default[:fonoster][:version]        = 'v1'
 default[:fonoster][:recordingsPath] = '/var/lib/fonoster/recordings'
 default[:fonoster][:ttsStorePath]   = '/var/lib/fonoster/tts'
+default[:admin][:username]          = 'admin'
+default[:admin][:secret]            = '308a002ab539471394a06ce710bc96c2'
 
 # Asterisk Manager
 default[:manager][:host]            = 'fnast'
@@ -22,7 +24,7 @@ default[:db][:secret]               = '308a002ab539471394a06ce710bc96c2'
 default[:db][:name]                 = 'fonoster'
 
 # BrainTree (Payment Gateway)
-default[:braintree][:environment]   = 'SANDBOX'
+default[:braintree][:environment]   = 'PRODUCTION'
 default[:braintree][:merchantId]    = 'ft8bhvgwjcm74fvz'
 default[:braintree][:publicKey]     = 'sbd8s4rrdwqms4j5'
 default[:braintree][:privateKey]    = '35906b1648479a702a9a9561e7defdba'

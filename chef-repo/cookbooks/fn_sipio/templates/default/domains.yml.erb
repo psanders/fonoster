@@ -1,5 +1,10 @@
-- kind: Domain
-  apiVersion: v1
+- apiVersion: v1draft1
+  kind: Domain
   metadata:
-    name: Test Domain
-  uri: sip.fonoster.com
+    name: Ocean Central Office
+  spec:
+    context:
+      domainUri: sip.ocean.com
+      egressPolicy:
+        rule: .*
+        didRef: DID0001

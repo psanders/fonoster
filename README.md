@@ -11,17 +11,16 @@ They are other requirements, but they are part of a package and should be mainta
 * GCloud SDK
 * Berks
 
-To run the infrastructure in your local environment you must create the following directories and share
-those files with Docker. This files will be use to create volumes and share some of the apps data.
+To run the infrastructure in your local environment you must "drop" the following files inside the '/tmp' of your host:
 
-```
-/opt/rallypoint/media/recordings
-/opt/rallypoint/media/tts
-/opt/rallypoint/webapps
-/opt/rallypoint/voiceapps
-```
+- webui.xml -> /tmp/
+- webui.jar -> /tmp/
+- voice-fat.jar -> /tmp/
+- rest.xml -> /tmp/
+- rest.jar -> /tmp/
+- resources -> /tmp/static
 
-You can now make changes in webui and see those changes at http://localhost:8181
+> The app will be running on http://localhost:8080
 
 ## Environmental Variables
 

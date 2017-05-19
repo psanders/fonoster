@@ -3,6 +3,10 @@ recordingsPath=<%= node[:fonoster][:recordingsPath] %>
 ttsStorePath=<%= node[:fonoster][:ttsStorePath] %>
 apiVersion=<%= node[:fonoster][:version] %>
 
+# Credentials for admin APIs
+admin.username=<%= node[:admin][:username] %>
+admin.secret=<%= node[:admin][:secret] %>
+
 # Telephone engine
 manager.host=<%= node[:manager][:host] %>
 manager.port=<%= node[:manager][:port] %>

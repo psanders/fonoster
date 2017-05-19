@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: fnapp-udp
+    labels:
+      app: fonoster
+    annotations:
+      service.beta.kubernetes.io/external-traffic: OnlyLocal
+spec:
+    ports:
+    - name: sip
+      protocol: UDP
+      port: 5060
+    selector:
+      app: fonoster
+      tier: frontend
+    type: LoadBalancer

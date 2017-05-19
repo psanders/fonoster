@@ -6,39 +6,48 @@ users_manage "fonoster" do
     action [:remove, :create]
 end
 
-directory "#{node['sipio']['home']}" do
+directory "#{node['sipio']['home']}/config" do
     recursive true
     action [:create]
-end
-
-cookbook_file "/tmp/#{node['sipio']['file']}.tar.gz" do
-  source "#{node['sipio']['file']}.tar.gz"
-  action :create
 end
 
 package 'wget' do
    action :upgrade
 end
 
+cookbook_file "/tmp/sipio-vendor-plugins-master.tar.gz" do
+  source "sipio-vendor-plugins-master.tar.gz"
+  action :create
+end
+
 # This needs to go. It is messy and horrible :(
 bash 'Installing Sip I/O Server' do
     cwd "/tmp"
     code <<-EOH
-        tar -xzvf #{node['sipio']['file']}.tar.gz
-        cp -rf #{node['sipio']['file']}/* #{node['sipio']['home']}
-        apt-get -y install wget
-        wget http://www.java.net/download/java/jdk9/archive/157/binaries/jdk-9-ea+157_linux-x64_bin.tar.gz
-        tar xvf jdk-9-ea+157_linux-x64_bin.tar.gz
+        wget https://github.com/psanders/sip.io/archive/master.tar.gz
+        tar -xzvf master.tar.gz
+        cp -rf sipio-master/* #{node['sipio']['home']}
+
+        # Installing the vendor plugin
+        mkdir #{node['sipio']['home']}/mod/vendor
+        tar -xzvf sipio-vendor-plugins-master.tar.gz
+        mv sipio-vendor-plugins-master/fn_resources #{node['sipio']['home']}/mod/vendor
+
+        # Installing the JDK9
+        wget http://download.java.net/java/jdk9/archive/169/binaries/jdk-9-ea+169_linux-x64_bin.tar.gz
+        tar xvf jdk-9-ea+169_linux-x64_bin.tar.gz
         mv jdk-9 #{node['sipio']['home']}
     EOH
 end
 
 template "#{node['sipio']['home']}/sipio" do
   source 'sipio.erb'
+  mode '0755'
 end
 
 template "#{node['sipio']['home']}/sipioctl" do
   source 'sipioctl.erb'
+  mode '0755'
 end
 
 template "#{node['sipio']['home']}/config/agents.yml" do
@@ -63,6 +72,10 @@ end
 
 template "#{node['sipio']['home']}/config/peers.yml" do
   source 'peers.yml.erb'
+end
+
+template "#{node['sipio']['home']}/mod/core/main.js" do
+  source 'main.js.erb'
 end
 
 execute "Update sipio.home owner" do

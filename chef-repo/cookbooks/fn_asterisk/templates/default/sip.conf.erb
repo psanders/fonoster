@@ -5,5 +5,5 @@ context=fnus1
 
 dtmfmode=inband
 
-; IP must match the docker-host IP
+; Sip I/O
 register => <%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@<%= node[:sip][:server][:host] %>:<%= node[:sip][:server][:port] %>

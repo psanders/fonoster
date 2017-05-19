@@ -1,5 +1,6 @@
 # Sip I/O Config
-default['sipio']['file']               = 'sip.io-1.0.0'
-default['sipio']['home']               = '/opt/sip.io'
+default['sipio']['downloadUrl']        = ''
+default['sipio']['file']               = ''
+default['sipio']['home']               = '/opt/sipio'
 default['sipio']['user']               = 'fonoster'
 default['sipio']['group']              = 'fonoster'

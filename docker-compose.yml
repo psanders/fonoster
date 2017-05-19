@@ -34,7 +34,7 @@ services:
       MANAGER_HOST: fnast
       BRAINTREE_ENV: SANDBOX
     ports:
-      - '8181:8080'
+      - '8080:8080'
       - '8443:8443'
       - '4573:4573'
       - '5060:5060'
