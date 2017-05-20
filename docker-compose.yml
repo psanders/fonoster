@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: etc/docker-files/dockerfile-ast
-    image: grc.io/fonoster-app/fnast:latest
+    image: gcr.io/fonoster-app/fnast:latest
     volumes:
       - /tmp:/var/lib/fonoster/recordings
       - /tmp:/var/lib/fonoster/tts
@@ -14,7 +14,7 @@ services:
     build:
       context: .
       dockerfile: etc/docker-files/dockerfile-mongodb
-    image: grc.io/fonoster-app/fnmongodb:latest
+    image: gcr.io/fonoster-app/fnmongodb:latest
     environment:
       FONOSTER_ENV: dev
     ports:
@@ -23,7 +23,7 @@ services:
     build:
       context: .
       dockerfile: etc/docker-files/dockerfile-appbase
-    image: grc.io/fonoster-app/fnapp_base:latest
+    image: gcr.io/fonoster-app/fnapp_base:latest
     volumes:
       - /tmp:/var/lib/fonoster/recordings
       - /tmp:/var/lib/fonoster/tts
