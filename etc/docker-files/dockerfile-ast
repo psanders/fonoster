@@ -10,8 +10,7 @@ COPY chef-repo /var/chef-repo
 RUN /usr/bin/chef-solo -o "recipe[fn_asterisk]" -c /var/chef-repo/solo.rb
 
 EXPOSE 5038
-EXPOSE 5060
-EXPOSE 5061
+EXPOSE 6060
 
 RUN chmod +x /var/chef-repo/etc/run_ast.sh
 
