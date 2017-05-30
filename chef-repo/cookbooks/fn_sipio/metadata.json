@@ -8,6 +8,7 @@
   "platforms": {
   },
   "dependencies": {
+    "java_se": "~> 8.131.0",
     "users": ">= 0.0.0",
     "chef-solo-search": ">= 0.0.0"
   },
