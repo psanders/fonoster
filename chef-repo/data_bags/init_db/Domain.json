@@ -25,7 +25,11 @@
   },
   "spec": {
     "context": {
-      "domainUri": "sip%46ocean%46com"
+      "domainUri": "sip%46ocean%46com",
+      "egressPolicy": {
+        "rule": ".*",
+        "didRef": "DID0001"
+      }
     }
   }
 }

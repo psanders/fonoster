@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-main_js="$(pwd)/mod/ctl/ctl.js"
-
-for i in $(ls libs); do
-    DEPS=$DEPS"libs/$i:";
-done;
-
-$(pwd)/jdk-9/bin/jjs -Dlog4j.configurationFile=config/log4j2.xml \
-    -cp $DEPS --language=es6 -doe -ot -scripting=true "$main_js" -- "$@"
