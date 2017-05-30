@@ -10,6 +10,8 @@ services:
       - /tmp:/var/lib/fonoster/tts
     ports:
       - '5038:5038'
+      - '6060:6060'
+      - '6060/udp:6060/udp'
   fnmongodb:
     build:
       context: .
@@ -36,7 +38,6 @@ services:
     ports:
       - '8080:8080'
       - '8443:8443'
-      - '4573:4573'
       - '5060:5060'
       - '5061:5061'
       - '5062:5062'
