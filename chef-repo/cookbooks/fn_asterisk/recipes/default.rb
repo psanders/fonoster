@@ -1,6 +1,24 @@
 # Cooking Asterisk
-package 'asterisk' do
-   action :upgrade
+include_recipe 'users'
+
+users_manage "asterisk" do
+    action [:remove, :create]
+end
+
+bash 'Installing Asterisk' do
+    cwd "/tmp"
+    code <<-EOH
+        apt-get update -y
+        apt-get install -y wget build-essential openssl libxml2-dev libncurses5-dev uuid-dev sqlite3 libsqlite3-dev pkg-config libjansson-dev
+        wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14.5.0.tar.gz
+        tar xvf asterisk-14.5.0.tar.gz
+        cd asterisk-14.5.0
+        ./configure
+        make
+        make install
+        make basic-pbx
+        echo "load = chan_sip.so" >> /etc/asterisk/modules.conf
+    EOH
 end
 
 directory "#{node[:asterisk][:recordingsPath]}" do
@@ -18,9 +36,4 @@ end
 
 template '/etc/asterisk/extensions.conf' do
   source 'extensions.conf.erb'
-end
-
-service 'asterisk' do
-  supports :status => true
-  action [:enable, :stop, :start]
 end
