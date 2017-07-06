@@ -4,16 +4,10 @@ udpbindaddr=0.0.0.0:6060
 tcpbindaddr=0.0.0.0:6060
 srvlookup=yes
 context=fnus1
-
 dtmfmode=inband
+outboundproxy=<%= node[:sip][:server][:host] %>:<%= node[:sip][:server][:port] %>
 
-; Inbound Calls
-register => <%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@<%= node[:sip][:server][:host] %>:<%= node[:sip][:server][:port] %>/from-proxy
+[authentication]
+auth=<%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@sipio
 
-; Outbound Calls
-[outbound-proxy]
-host=<%= node[:sip][:server][:host] %>
-port=<%= node[:sip][:server][:port] %>
-username=<%= node[:sip][:server][:username] %>
-secret=<%= node[:sip][:server][:secret] %>
-type=peer
+register => <%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@<%= node[:sip][:server][:host] %>:<%= node[:sip][:server][:port] %>/<%= node[:sip][:server][:username] %>
