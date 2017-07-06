@@ -1,0 +1,53 @@
+{
+  "_id":{
+    "$oid":"595bc68592bccf1454883d0c"
+  },
+  "className":"com.fonoster.model.DIDNumber",
+  "created":{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "modified":{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "gateway":{
+    "$ref":"Gateway",
+    "$id":{
+      "$oid":"595bc68492bccf1454883d0b"
+    }
+  },
+  "kind":"DID",
+  "metadata":{
+    "gwRef":"595bc68492bccf1454883d0b",
+    "ref":"595bc68592bccf1454883d0c",
+    "tech": {
+      "voice": true,
+      "sms": false,
+      "mms": false
+    },
+    "geoInfo":{
+      "countryISOCode":"US",
+      "country":"USA",
+      "city":"Sanford, NC"
+    }
+  },
+  "apiVersion":"v1",
+  "status":"ACTIVE",
+  "spec":{
+    "location":{
+      "telUrl":"tel:17066041487",
+      "aorLink":"ast@fnast"
+    }
+  },
+  "deleted":false,
+  "preferred":false,
+  "user":{
+    "$ref":"User",
+    "$id":"john@doe.com"
+  }
+}

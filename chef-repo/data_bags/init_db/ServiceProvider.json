@@ -5,7 +5,6 @@
   "address": "DID Logic Limited\nOffice 7D, Cheuk Nang Plaza\n250 Hennesy Road\nWanchai, Hong Kong",
   "className": "com.fonoster.model.ServiceProvider",
   "contactNumber": "support@didlogic.com",
-  "context": "didlogic-cntx",
   "created": {
     "t": {
       "$numberLong": "1445689902375"
@@ -18,7 +17,6 @@
     },
     "z": "UTC"
   },
-  "name": "DIDLogic",
-  "trunk": "didlogic-trunk",
+  "name": "DIDLogic Inc",
   "apiVersion": "v1"
 }

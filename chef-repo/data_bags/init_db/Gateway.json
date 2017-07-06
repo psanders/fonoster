@@ -1,0 +1,41 @@
+{
+  "_id": {
+      "$oid": "595bc68492bccf1454883d0b"
+  },
+  "className": "com.fonoster.model.Gateway",
+  "created": {
+    "t": {
+      "$numberLong": "1499186820924"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "modified": {
+    "t": {
+      "$numberLong": "1499186820879"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "provider": {
+    "$ref": "ServiceProvider",
+    "$id": {
+      "$oid": "562b7a2ec90a7eb3088a126a"
+    }
+  },
+  "apiVersion": "v1",
+  "kind": "Gateway",
+  "metadata": {
+    "ref": "595bc68492bccf1454883d0b",
+    "name": "DIDLogic GW"
+  },
+  "spec": {
+    "regService": {
+      "host": "sip.didlogic.net",
+      "transport": "udp",
+      "credentials": {
+        "username": "96170",
+        "secret": "iymscvb4rUSG4T0P4RD0"
+      }
+    }
+  },
+  "deleted": false
+}
