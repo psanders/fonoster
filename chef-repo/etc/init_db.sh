@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docs=(User Account Activity PhoneNumber Broadcast Rate ServiceProvider Domain Agent)
+docs=(User Account Activity Broadcast Rate ServiceProvider Gateway DIDNumber Domain Agent)
 db=fonoster
 path=$1
 
