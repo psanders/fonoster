@@ -17,8 +17,8 @@ package 'wget' do
 end
 
 # Can't simply download this because is a private repo
-cookbook_file "/tmp/sipio-vendor-plugins-master.tar.gz" do
-  source "sipio-vendor-plugins-master.tar.gz"
+cookbook_file "/tmp/#{node['sipio']['filename']}.tar.gz" do
+  source "#{node['sipio']['filename']}.tar.gz"
   action :create
 end
 
@@ -26,41 +26,18 @@ end
 bash 'Installing Sip I/O Server' do
     cwd "/tmp"
     code <<-EOH
-        wget #{node['sipio']['downloadUrl']}
         tar xvf #{node['sipio']['filename']}.tar.gz
-        mv #{node['sipio']['filename']} #{node['sipio']['home']}
-        # Maybe this should go to attributes
-        tar xvf sipio-vendor-plugins-master.tar.gz
-        mv sip-vendor-plugins-master/vendor #{node['sipio']['home']}/mod/
+        cp -a #{node['sipio']['filename']}/* #{node['sipio']['home']}
+        rm -rf #{node['sipio']['filename']} #{node['sipio']['filename']}.tar.gz
     EOH
-end
-
-template "#{node['sipio']['home']}/config/agents.yml" do
-  source 'agents.yml.erb'
 end
 
 template "#{node['sipio']['home']}/config/config.yml" do
   source 'config.yml.erb'
 end
 
-template "#{node['sipio']['home']}/config/dids.yml" do
-  source 'dids.yml.erb'
-end
-
-template "#{node['sipio']['home']}/config/domains.yml" do
-  source 'domains.yml.erb'
-end
-
-template "#{node['sipio']['home']}/config/gateways.yml" do
-  source 'gateways.yml.erb'
-end
-
 template "#{node['sipio']['home']}/config/peers.yml" do
   source 'peers.yml.erb'
-end
-
-template "#{node['sipio']['home']}/mod/core/main.js" do
-  source 'main.js.erb'
 end
 
 execute "Update sipio.home owner" do
