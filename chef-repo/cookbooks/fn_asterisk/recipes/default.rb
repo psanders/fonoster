@@ -10,7 +10,7 @@ bash 'Installing Asterisk' do
     code <<-EOH
         apt-get update -y
         apt-get install -y wget build-essential openssl libxml2-dev libncurses5-dev uuid-dev sqlite3 libsqlite3-dev pkg-config libjansson-dev
-        wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-14.5.0.tar.gz
+        wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-14.5.0.tar.gz
         tar xvf asterisk-14.5.0.tar.gz
         cd asterisk-14.5.0
         ./configure
