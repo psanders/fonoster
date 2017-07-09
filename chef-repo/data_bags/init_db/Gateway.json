@@ -65,7 +65,7 @@
   "apiVersion": "v1",
   "kind": "Gateway",
   "metadata": {
-    "ref": "595bc68492bccf1454883d0b",
+    "ref": "507f191e810c19729de860ea",
     "name": "VoIP.ms GW"
   },
   "spec": {
