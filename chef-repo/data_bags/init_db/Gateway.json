@@ -39,3 +39,44 @@
   },
   "deleted": false
 }
+{
+  "_id": {
+    "$oid": "507f191e810c19729de860ea"
+  },
+  "className": "com.fonoster.model.Gateway",
+  "created": {
+    "t": {
+      "$numberLong": "1499186820924"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "modified": {
+    "t": {
+      "$numberLong": "1499186820879"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "provider": {
+    "$ref": "ServiceProvider",
+    "$id": {
+      "$oid": "507f1f77bcf86cd799439011"
+    }
+  },
+  "apiVersion": "v1",
+  "kind": "Gateway",
+  "metadata": {
+    "ref": "595bc68492bccf1454883d0b",
+    "name": "VoIP.ms GW"
+  },
+  "spec": {
+    "regService": {
+      "host": "atlanta2.voip.ms",
+      "transport": "tcp",
+      "credentials": {
+        "username": "215706",
+        "secret": "iymscvb4rUSG4T0P4RD0"
+      }
+    }
+  },
+  "deleted": false
+}
