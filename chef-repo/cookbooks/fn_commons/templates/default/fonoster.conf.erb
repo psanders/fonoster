@@ -7,11 +7,13 @@ apiVersion=<%= node[:fonoster][:version] %>
 admin.username=<%= node[:admin][:username] %>
 admin.secret=<%= node[:admin][:secret] %>
 
-# Telephone engine
-manager.host=<%= node[:manager][:host] %>
-manager.port=<%= node[:manager][:port] %>
-manager.username=<%= node[:manager][:username] %>
-manager.secret=<%= node[:manager][:secret] %>
+# Asterisk
+ast.manager.host=<%= node[:ast][:manager][:host] %>
+ast.manager.port=<%= node[:ast][:manager][:port] %>
+ast.manager.username=<%= node[:ast][:manager][:username] %>
+ast.manager.secret=<%= node[:ast][:manager][:secret] %>
+ast.dialplan.context=<%= node[:ast][:dialplan][:context] %>
+ast.dialplan.ext=<%= node[:ast][:dialplan][:ext] %>
 
 # Astive Server
 astived.host=<%= node[:astived][:host] %>

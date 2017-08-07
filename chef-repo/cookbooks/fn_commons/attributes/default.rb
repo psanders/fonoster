@@ -7,10 +7,12 @@ default[:admin][:username]          = 'admin'
 default[:admin][:secret]            = '308a002ab539471394a06ce710bc96c2'
 
 # Asterisk Manager
-default[:manager][:host]            = 'fnast'
-default[:manager][:port]            = 5038
-default[:manager][:username]        = 'admin'
-default[:manager][:secret]          = '308a002ab539471394a06ce710bc96c2'
+default[:ast][:manager][:host]       = 'fnast'
+default[:ast][:manager][:port]       = 5038
+default[:ast][:manager][:username]   = 'admin'
+default[:ast][:manager][:secret]     = '308a002ab539471394a06ce710bc96c2'
+default[:ast][:dialplan][:context]   = 'fnus1'
+default[:ast][:dialplan][:ext]       = 'ast'
 
 # Astive Server
 default[:astived][:host]            = 'fnapp'

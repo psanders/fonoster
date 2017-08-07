@@ -3,11 +3,20 @@ tcpenable=yes
 udpbindaddr=0.0.0.0:6060
 tcpbindaddr=0.0.0.0:6060
 srvlookup=yes
-context=fnus1
+context=<%= node[:ast][:dialplan][:context] %>
 dtmfmode=inband
-outboundproxy=<%= node[:sip][:server][:host] %>:<%= node[:sip][:server][:port] %>
-
-[authentication]
-auth=<%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@sipio
 
 register => <%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@<%= node[:sip][:server][:host] %>:<%= node[:sip][:server][:port] %>/<%= node[:sip][:server][:username] %>
+
+; This is not the perfect solution because we will have to hardcode all the gateways in this file :(
+[atlanta2.voip.ms]
+type=friend
+secret=iymscvb4rUSG4T0P4RD0
+username=215706
+host=atlanta2.voip.ms
+
+[sip.didlogic.net]
+type=friend
+username=96170
+secret=iymscvb4rUSG4T0P4RD0
+host=sip.didlogic.net

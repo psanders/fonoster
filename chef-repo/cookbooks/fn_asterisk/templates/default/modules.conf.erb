@@ -1,0 +1,77 @@
+[modules]
+autoload = no
+
+; Applications
+
+load = res_agi.so
+load = app_bridgewait.so
+load = app_dial.so
+load = app_playback.so
+load = app_stack.so
+load = app_verbose.so
+load = app_voicemail.so
+load = app_directory.so
+load = app_confbridge.so
+load = app_senddtmf.so
+load = app_amd.so
+
+; Not Yet Tested
+
+load = app_record.so
+load = app_dial.so
+load = app_mixmonitor.so
+
+; Bridging
+
+load = bridge_builtin_features.so
+load = bridge_builtin_interval_features.so
+load = bridge_holding.so
+load = bridge_native_rtp.so
+load = bridge_simple.so
+load = bridge_softmix.so
+
+; Call Detail Records
+
+load = cdr_custom.so
+
+; Channel Drivers
+
+load = chan_bridge_media.so
+load = chan_sip.so
+
+; Codecs
+
+load = codec_gsm.so
+load = codec_resample.so
+load = codec_ulaw.so
+load = codec_g722.so
+
+; Formats
+
+load = format_gsm.so
+load = format_pcm.so
+load = format_wav_gsm.so
+load = format_wav.so
+load = format_sln.so
+
+; Functions
+
+load = func_callerid.so
+load = func_cdr.so
+load = func_sorcery.so
+load = func_devstate.so
+load = func_strings.so
+
+; Core/PBX
+
+load = pbx_config.so
+
+; Resources
+
+load = res_musiconhold.so
+load = res_rtp_asterisk.so
+load = res_sorcery_astdb.so
+load = res_sorcery_config.so
+load = res_sorcery_memory.so
+load = res_sorcery_realtime.so
+load = res_timing_timerfd.so

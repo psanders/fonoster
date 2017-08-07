@@ -17,11 +17,10 @@ bash 'Installing Asterisk' do
         make
         make install
         make basic-pbx
-        echo "load = chan_sip.so" >> /etc/asterisk/modules.conf
     EOH
 end
 
-directory "#{node[:asterisk][:recordingsPath]}" do
+directory "#{node[:ast][:recordingsPath]}" do
     action [:create]
     recursive true
 end
@@ -36,4 +35,12 @@ end
 
 template '/etc/asterisk/extensions.conf' do
   source 'extensions.conf.erb'
+end
+
+template '/etc/asterisk/modules.conf' do
+  source 'modules.conf.erb'
+end
+
+template '/etc/asterisk/amd.conf' do
+  source 'amd.conf.erb'
 end

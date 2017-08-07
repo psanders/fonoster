@@ -1,8 +1,8 @@
 [general]
 enabled=yes
-port=<%= node[:asterisk][:manager][:port] %>
-bindaddr=<%= node[:asterisk][:manager][:bindAddr] %>
-[<%= node[:asterisk][:manager][:username] %>]
-secret=<%= node[:asterisk][:manager][:secret] %>
+port=<%= node[:ast][:manager][:port] %>
+bindaddr=<%= node[:ast][:manager][:bindAddr] %>
+[<%= node[:ast][:manager][:username] %>]
+secret=<%= node[:ast][:manager][:secret] %>
 read=all
 write=all

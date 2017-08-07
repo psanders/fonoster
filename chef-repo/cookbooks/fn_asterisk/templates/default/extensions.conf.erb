@@ -1,10 +1,6 @@
-[fnus1]
-exten => .X,1,Answer
-exten => .X,2,SendDTMF(${initDigits})
-exten => .X,3,AMD
-exten => .X,n,agi(agi://${astivedHost}:${astivedPort}/fn/FonosterJS?callId=${callId}&amdStatus=${AMDSTATUS}&initDigits=${initDigits}&timeout=${timeout}&record=${record})
-exten => .X,n,Hangup
-
-exten => from-proxy,1,Answer
-exten => from-proxy,n,agi(agi://fnapp:5038)
-exten => from-proxy,n,Hangup
+[<%= node[:ast][:dialplan][:context] %>]
+exten => <%= node[:ast][:dialplan][:ext] %>,1,Answer
+exten => <%= node[:ast][:dialplan][:ext] %>,2,SendDTMF(${initDigits})
+exten => <%= node[:ast][:dialplan][:ext] %>,3,AMD
+exten => <%= node[:ast][:dialplan][:ext] %>,n,AGI(agi://<%= node[:astived][:host] %>:<%= node[:astived][:port] %>/fn/FonosterJS?callId=${callId}&amdStatus=${AMDSTATUS}&initDigits=${initDigits}&timeout=${timeout}&record=${record})
+exten => <%= node[:ast][:dialplan][:ext] %>,n,Hangup
