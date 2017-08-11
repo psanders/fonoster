@@ -6,7 +6,9 @@ srvlookup=yes
 context=<%= node[:ast][:dialplan][:context] %>
 dtmfmode=inband
 
-register => <%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@<%= node[:sip][:server][:host] %>:<%= node[:sip][:server][:port] %>/<%= node[:sip][:server][:username] %>
+; WARNING: This IP has been hardcode. Further research is required to obtain the "proper way"
+;register => <%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@<%= node[:sip][:server][:host] %>:<%= node[:sip][:server][:port] %>/<%= node[:sip][:server][:username] %>
+register => <%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@10.88.1.32:<%= node[:sip][:server][:port] %>/<%= node[:sip][:server][:username] %>
 
 ; This is not the perfect solution because we will have to hardcode all the gateways in this file :(
 [atlanta2.voip.ms]

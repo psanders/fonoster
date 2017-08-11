@@ -1,7 +1,9 @@
 apiVersion: v1draft1
 metadata:
-  userAgent: Sip I/O v1.0
+  userAgent: Fonoster GW
 spec:
+  # WARNING: We must find a way to set this dynamically. Also, this will not work for agents using TCP.
+  externAddr: 35.185.80.191
   securityContext:
     keyStore: etc/certs/keystore.jks
     trustStore: etc/certs/keystore.jks
