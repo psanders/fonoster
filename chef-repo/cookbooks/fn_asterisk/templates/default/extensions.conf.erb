@@ -2,5 +2,6 @@
 exten => <%= node[:ast][:dialplan][:ext] %>,1,Answer
 exten => <%= node[:ast][:dialplan][:ext] %>,2,SendDTMF(${initDigits})
 exten => <%= node[:ast][:dialplan][:ext] %>,3,AMD
-exten => <%= node[:ast][:dialplan][:ext] %>,n,AGI(agi://<%= node[:astived][:host] %>:<%= node[:astived][:port] %>/fn/FonosterJS?callId=${callId}&amdStatus=${AMDSTATUS}&initDigits=${initDigits}&timeout=${timeout}&record=${record})
+exten => <%= node[:ast][:dialplan][:ext] %>,n,Set(didNum=${CUT(CUT(CUT(SIP_HEADER(To),<,2),:,2),@,1)})
+exten => <%= node[:ast][:dialplan][:ext] %>,n,AGI(agi://<%= node[:astived][:host] %>:<%= node[:astived][:port] %>/fn/FonosterJS?didNum=${didNum}&callId=${callId}&amdStatus=${AMDSTATUS}&initDigits=${initDigits}&timeout=${timeout}&record=${record})
 exten => <%= node[:ast][:dialplan][:ext] %>,n,Hangup
