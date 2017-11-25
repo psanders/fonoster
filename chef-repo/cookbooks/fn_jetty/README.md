@@ -34,7 +34,7 @@ Attribute        | Description                    | Default
 home             | location of jetty installation | /opt/jetty
 base             | jetty base for easy updates    | /opt/app-base
 http.port        | http port                      | 8080
-https.port       | secure port                    | 8445
+https.port       | secure port                    | 8443
 
 Note: For more attributes go to 'attributes/default/default.rb'
 
