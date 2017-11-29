@@ -41,7 +41,7 @@
   "spec":{
     "location":{
       "telUrl":"tel:17066041487",
-      "aorLink":"ast@fnast"
+      "aorLink":"sip:ast@fnast"
     }
   },
   "deleted":false,
@@ -94,7 +94,7 @@
   "spec":{
     "location":{
       "telUrl":"tel:9198972120",
-      "aorLink":"ast@fnast"
+      "aorLink":"sip:ast@fnast"
     }
   },
   "deleted":false,
