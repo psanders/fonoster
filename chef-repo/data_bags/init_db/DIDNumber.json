@@ -104,3 +104,56 @@
     "$id":"john@doe.com"
   }
 }
+{
+  "_id":{
+    "$oid":"5272e0f00000000000000000"
+  },
+  "className":"com.fonoster.model.DIDNumber",
+  "created":{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "modified"`:{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "gateway":{
+    "$ref":"Gateway",
+    "$id":{
+      "$oid":"507f191e810c19729de860ea"
+    }
+  },
+  "kind":"DID",
+  "metadata":{
+    "gwRef":"507f191e810c19729de860ea",
+    "ref":"5272e0f00000000000000000",
+    "tech": {
+      "voice": true,
+      "sms": false,
+      "mms": false
+    },
+    "geoInfo":{
+      "countryISOCode":"DO",
+      "country":"Dominican Republic",
+      "city":"Sanford, NC"
+    }
+  },
+  "apiVersion":"v1",
+  "status":"ACTIVE",
+  "spec":{
+    "location":{
+      "telUrl":"tel:8299471325",
+      "aorLink":"sip:ast@fnast"
+    }
+  },
+  "deleted":false,
+  "preferred":false,
+  "user":{
+    "$ref":"User",
+    "$id":"sanderspedro@gmail.com"
+  }
+}
