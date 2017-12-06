@@ -8,10 +8,10 @@ default[:ast][:recordingsPath]       = '/var/lib/fonoster/recordings'
 default[:ast][:dialplan][:context]   = 'fnus1'
 default[:ast][:dialplan][:ext]       = 'ast'
 
-# Sip Server
+# Sip Server (WARNING: The host IP has been hardcoded. Further research is required to obtain fnapp's IP dynamically
 default[:sip][:server][:username]    = 'ast'
 default[:sip][:server][:secret]      = 'N8p2exTu'
-default[:sip][:server][:host]        = 'fnapp'
+default[:sip][:server][:host]        = '10.88.4.8'
 default[:sip][:server][:port]        = 5060
 
 # Astive Server
