@@ -1,7 +1,10 @@
 [<%= node[:ast][:dialplan][:context] %>]
 exten => <%= node[:ast][:dialplan][:ext] %>,1,Answer
-exten => <%= node[:ast][:dialplan][:ext] %>,2,SendDTMF(${initDigits})
-exten => <%= node[:ast][:dialplan][:ext] %>,3,AMD
-exten => <%= node[:ast][:dialplan][:ext] %>,n,Set(didNum=${CUT(CUT(CUT(SIP_HEADER(To),<,2),:,2),@,1)})
+exten => <%= node[:ast][:dialplan][:ext] %>,2,GotoIf(${initDigits}?:JUMP_1)
+exten => <%= node[:ast][:dialplan][:ext] %>,n,SendDTMF(${initDigits})
+exten => <%= node[:ast][:dialplan][:ext] %>,n(JUMP_1),Set(AMDSTATUS='UNKOWN')
+exten => <%= node[:ast][:dialplan][:ext] %>,n,GotoIf(${amdEnabled}?:JUMP_2)
+exten => <%= node[:ast][:dialplan][:ext] %>,n,AMD
+exten => <%= node[:ast][:dialplan][:ext] %>,n(JUMP_2),Set(didNum=${CUT(CUT(CUT(SIP_HEADER(To),<,2),:,2),@,1)})
 exten => <%= node[:ast][:dialplan][:ext] %>,n,AGI(agi://<%= node[:astived][:host] %>:<%= node[:astived][:port] %>/fn/FonosterJS?didNum=${didNum}&callId=${callId}&amdStatus=${AMDSTATUS}&initDigits=${initDigits}&timeout=${timeout}&record=${record})
 exten => <%= node[:ast][:dialplan][:ext] %>,n,Hangup
