@@ -1,41 +1,43 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: fnapp-udp
-    labels:
-      app: fonoster
-    annotations:
-      service.beta.kubernetes.io/external-traffic: OnlyLocal
+  name: fnapp-udp
+  labels:
+    app: fonoster
+  annotations:
+    service.beta.kubernetes.io/external-traffic: OnlyLocal
 spec:
-    ports:
-    - name: sip
-      port: 5060
-      protocol: UDP
-    selector:
-      app: fonoster
-      tier: frontend
-    type: LoadBalancer
+  ports:
+  - name: sip
+    port: 5060
+    protocol: UDP
+  selector:
+    app: fonoster
+    tier: frontend
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: fnapp
-    labels:
-      app: fonoster
+  name: fnapp
+  labels:
+    app: fonoster
 spec:
-    ports:
-    - name: http
-      port: 80
-      targetPort: 8080
-    - name: https
-      port: 443
-      targetPort: 8443
-    - name: fastagi
-      port: 4573
-    selector:
-      app: fonoster
-      tier: frontend
-    type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  - name: https
+    port: 443
+    targetPort: 8443
+  - name: fastagi
+    port: 4573
+  - name: proxyip
+    port: 8001
+  selector:
+    app: fonoster
+    tier: frontend
+  type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -71,9 +73,13 @@ spec:
           name: https
         - containerPort: 4573
           name: fastagi
+        - containerPort: 8001
+          name: proxyip
         volumeMounts:
         - name: pd
           mountPath: /var/lib/fonoster
+        command: ["/bin/sh"]
+        args: ["-c", "echo $(python -c 'import socket; print(socket.gethostbyname(socket.gethostname()))') > index.html | python -m SimpleHTTPServer 8001"]
       volumes:
       - name: pd
         persistentVolumeClaim:
