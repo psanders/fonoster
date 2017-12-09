@@ -34,6 +34,8 @@ spec:
     port: 4573
   - name: proxyip
     port: 8001
+  - name: sip
+    port: 5060
   selector:
     app: fonoster
     tier: frontend
@@ -78,7 +80,7 @@ spec:
         volumeMounts:
         - name: pd
           mountPath: /var/lib/fonoster
-     volumes:
+      volumes:
       - name: pd
         persistentVolumeClaim:
           claimName: pvc0002
