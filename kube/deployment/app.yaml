@@ -78,9 +78,7 @@ spec:
         volumeMounts:
         - name: pd
           mountPath: /var/lib/fonoster
-        command: ["/bin/sh"]
-        args: ["-c", "echo $(python -c 'import socket; print(socket.gethostbyname(socket.gethostname()))') > index.html | python -m SimpleHTTPServer 8001"]
-      volumes:
+     volumes:
       - name: pd
         persistentVolumeClaim:
           claimName: pvc0002

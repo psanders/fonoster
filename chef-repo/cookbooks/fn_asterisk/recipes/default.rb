@@ -1,6 +1,10 @@
 # Cooking Asterisk
 include_recipe 'users'
 
+package 'cron' do
+   action :upgrade
+end
+
 users_manage "asterisk" do
     action [:remove, :create]
 end
@@ -18,6 +22,15 @@ bash 'Installing Asterisk' do
         make install
         make basic-pbx
     EOH
+end
+
+cron 'Proxy IP Updater' do
+  command "sh #{node[:ipConsumer][:path]}/#{node[:ipConsumer][:script]}"
+end
+
+file "#{node[:ipConsumer][:file]}" do
+  content "#{node[:sip][:server][:host]}"
+  mode '0755'
 end
 
 directory "#{node[:ast][:recordingsPath]}" do
@@ -43,4 +56,16 @@ end
 
 template '/etc/asterisk/amd.conf' do
   source 'amd.conf.erb'
+end
+
+template '/etc/asterisk/ari.conf' do
+  source 'ari.conf.erb'
+end
+
+template '/etc/asterisk/http.conf' do
+  source 'http.conf.erb'
+end
+
+template "#{node[:ipConsumer][:path]}/#{node[:ipConsumer][:script]}" do
+  source "#{node[:ipConsumer][:script]}.erb"
 end

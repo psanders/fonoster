@@ -10,4 +10,8 @@ cd /opt/sipio/ && ./sipio &
 service jetty start
 service jetty start
 
+# WARNING: Port have been hardcoded
+echo $(python -c 'import socket; print(socket.gethostbyname(socket.gethostname()))') > index.html | python -m SimpleHTTPServer 8001
+
+# Do I still need this?
 sleep infinity
