@@ -7,14 +7,20 @@ ARI_HOST=<%= node[:ari][:host] %>
 ARI_PORT=<%= node[:ari][:port] %>
 ARI_USERNAME=<%= node[:ari][:username] %>
 ARI_SECRET=<%= node[:ari][:secret] %>
-OLD_PROXY_IP=$(cat ${PROXY_IP_FILE})
-PROXY_IP=$(curl ${IP_NOTIFIER_HOST}:${IP_NOTIFIER_PORT})
+OLD_PROXY_IP=$(cat $PROXY_IP_FILE)
 SIP_CONF=/etc/asterisk/sip.conf
+PROXY_IP=$(curl $IP_NOTIFIER_HOST:$IP_NOTIFIER_PORT)
+
+if [ $? -ne 0 ]
+then
+    echo "Unable to reach IP-notifier. Might be down"
+    exit 1
+fi
 
 if [ "$OLD_PROXY_IP" != "$PROXY_IP" ]
 then
     echo "Updating Asterisk Box w/ new proxyIp"
-    sed -i "s/$OLD_PROXY_IP/$PROXY_IP/" $SIP_CONF
+    sed -i "s/host=$OLD_PROXY_IP/host=$PROXY_IP/" $SIP_CONF
     curl -XPUT -u "$ARI_USERNAME:$ARI_SECRET" $ARI_HOST:$ARI_PORT/ari/asterisk/modules/chan_sip.so
 fi
 
