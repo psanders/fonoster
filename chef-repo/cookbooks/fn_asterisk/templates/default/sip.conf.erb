@@ -9,8 +9,9 @@ nat=force_rport,comedia
 
 register => <%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@sipio:<%= node[:sip][:server][:port] %>/<%= node[:sip][:server][:username] %>
 
+; Using peer causes error "Failed to authenticate on INVITE to..."
 [sipio]
-type=peer
+type=friend
 username=<%= node[:sip][:server][:username] %>
 secret=<%= node[:sip][:server][:secret] %>
 host=<%= node[:sip][:server][:host] %>
