@@ -8,7 +8,7 @@ metadata:
     service.beta.kubernetes.io/external-traffic: OnlyLocal
 spec:
   ports:
-  - name: sip
+  - name: sip-udp
     port: 5060
     protocol: UDP
   selector:
@@ -34,7 +34,7 @@ spec:
     port: 4573
   - name: proxyip
     port: 8001
-  - name: sip
+  - name: sip-tcp
     port: 5060
   selector:
     app: fonoster
@@ -67,8 +67,11 @@ spec:
           value: fnast
         ports:
         - containerPort: 5060
-          name: sip
+          name: sip-udp
           protocol: UDP
+        - containerPort: 5060
+          name: sip-tcp
+          protocol: TCP
         - containerPort: 8080
           name: http
         - containerPort: 8443
