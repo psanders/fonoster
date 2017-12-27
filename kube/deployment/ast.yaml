@@ -8,16 +8,12 @@ spec:
   ports:
   - name: ami
     port: 5038
-  - name: sip-udp
-    port: 6060
-    protocol: UDP
-  - name: sip-tcp
-    port: 6060
-    protocol: TCP
+  - name: sip
+    port: 5060
   selector:
     app: fonoster
     tier: gateway
-  clusterIP: None
+  type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -44,12 +40,8 @@ spec:
         ports:
         - containerPort: 5038
           name: ami
-        - containerPort: 6060
-          name: sip-udp
-          protocol: UDP
-        - containerPort: 6060
-          name: sip-tcp
-          protocol: TCP
+        - containerPort: 5060
+          name: sip
         volumeMounts:
         - name: pd
           mountPath: /var/lib/fonoster

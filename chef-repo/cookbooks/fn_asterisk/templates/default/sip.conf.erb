@@ -1,14 +1,15 @@
 [general]
 useragent=Fonoster MS
+bindaddr=0.0.0.0:5060
 tcpenable=yes
-udpbindaddr=0.0.0.0:6060
-tcpbindaddr=0.0.0.0:6060
 srvlookup=yes
 context=<%= node[:ast][:dialplan][:context] %>
 dtmfmode=inband
 nat=force_rport,comedia
+externAddr=35.196.78.166:5060
+localnet=10.0.0.0/32
 
-register => <%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@sipio:<%= node[:sip][:server][:port] %>/<%= node[:sip][:server][:username] %>
+register => tcp://<%= node[:sip][:server][:username] %>:<%= node[:sip][:server][:secret] %>@sipio:<%= node[:sip][:server][:port] %>/<%= node[:sip][:server][:username] %>
 
 ; Using peer causes error "Failed to authenticate on INVITE to..."
 [sipio]
@@ -16,6 +17,7 @@ type=friend
 username=<%= node[:sip][:server][:username] %>
 secret=<%= node[:sip][:server][:secret] %>
 host=<%= node[:sip][:server][:host] %>
+transport=tcp
 
 ; This is not the perfect solution because we will have to hardcode all the gateways in this file :(
 [atlanta2.voip.ms]
@@ -23,9 +25,3 @@ type=friend
 secret=iymscvb4rUSG4T0P4RD0
 username=215706
 host=atlanta2.voip.ms
-
-[sip.didlogic.net]
-type=friend
-username=96170
-secret=iymscvb4rUSG4T0P4RD0
-host=sip.didlogic.net
