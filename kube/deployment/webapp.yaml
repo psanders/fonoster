@@ -1,25 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: fnapp-udp
-  labels:
-    app: fonoster
-  annotations:
-    service.beta.kubernetes.io/external-traffic: OnlyLocal
-spec:
-  ports:
-  - name: sip-udp
-    port: 5060
-    protocol: UDP
-  selector:
-    app: fonoster
-    tier: frontend
-  type: LoadBalancer
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: fnapp
+  name: webapp
   labels:
     app: fonoster
 spec:
@@ -30,12 +12,6 @@ spec:
   - name: https
     port: 443
     targetPort: 8443
-  - name: fastagi
-    port: 4573
-  - name: proxyip
-    port: 8001
-  - name: sip-tcp
-    port: 5060
   selector:
     app: fonoster
     tier: frontend
@@ -44,7 +20,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: fnapp
+  name: webapp
   labels:
     app: fonoster
 spec:
@@ -57,29 +33,19 @@ spec:
         tier: frontend
     spec:
       containers:
-      - name: fnapp
+      - name: webapp
         image: gcr.io/fonoster-app/fnapp:latest
         imagePullPolicy: Always
         env:
         - name: DB_HOST
-          value: fnmongodb
+          value: datasys
         - name: MANAGER_HOST
-          value: fnast
+          value: mediaserver
         ports:
-        - containerPort: 5060
-          name: sip-udp
-          protocol: UDP
-        - containerPort: 5060
-          name: sip-tcp
-          protocol: TCP
         - containerPort: 8080
           name: http
         - containerPort: 8443
           name: https
-        - containerPort: 4573
-          name: fastagi
-        - containerPort: 8001
-          name: proxyip
         volumeMounts:
         - name: pd
           mountPath: /var/lib/fonoster
