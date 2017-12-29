@@ -1,24 +1,26 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: fnast
+  name: mediaserver
   labels:
     app: fonoster
 spec:
   ports:
+  - name: fastagi
+    port: 4573
   - name: ami
     port: 5038
   - name: sip
     port: 5060
   selector:
     app: fonoster
-    tier: gateway
+    tier: media
   type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: fnast
+  name: mediaserver
   labels:
     app: fonoster
 spec:
@@ -28,15 +30,24 @@ spec:
     metadata:
       labels:
         app: fonoster
-        tier: gateway
+        tier: media
     spec:
       containers:
-      - name: fnast
-        image: gcr.io/fonoster-app/fnast:latest
+      - name: fnvoiceapps
+        image: gcr.io/fonoster-app/fnvoiceapps:latest
+        imagePullPolicy: Always
+        env:
+        - name: DB_HOST
+          value: datasys
+        ports:
+        - containerPort: 4573
+          name: fastagi
+      - name: fnasterisk
+        image: gcr.io/fonoster-app/fnasterisk:latest
         imagePullPolicy: Always
         env:
         - name: ASTIVED_HOST
-          value: fnapp
+          value: localhost
         ports:
         - containerPort: 5038
           name: ami
