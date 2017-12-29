@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: fnmongodb
+  name: datasys
   labels:
     app: fonoster
 spec:
@@ -15,7 +15,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: fnmongodb
+  name: datasys
   labels:
     app: fonoster
 spec:
@@ -28,8 +28,8 @@ spec:
         tier: data
     spec:
       containers:
-      - name: fnmongodb
-        image: gcr.io/fonoster-app/fnmongodb:latest
+      - name: fndb
+        image: gcr.io/fonoster-app/fndb:latest
         imagePullPolicy: Always
         env:
         - name: FONOSTER_ENV
