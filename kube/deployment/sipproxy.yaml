@@ -35,7 +35,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: RES_API_URL
-          value: http://webapp:8080/v1/admin
+          value: http://webapp/v1/admin
         - name: EXTERN_ADDR
           value: '35.196.78.166'
         - name: LOCALNETS
