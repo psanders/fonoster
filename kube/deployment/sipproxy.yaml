@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sipproxy
+  labels:
+    app: fonoster
+spec:
+  ports:
+  - name: sip
+    port: 5060
+    targetPort: 5060
+  selector:
+    app: fonoster
+    tier: coms
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sipproxy
+  labels:
+    app: fonoster
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fonoster
+        tier: coms
+    spec:
+      containers:
+      - name: fnsipproxy
+        image: gcr.io/fonoster-app/fnsipproxy:latest
+        imagePullPolicy: Always
+        env:
+        - name: RES_API_URL
+          value: http://webapp:8080/v1/admin
+        - name: EXTERN_ADDR
+          value: '35.196.78.166'
+        - name: LOCALNETS
+          value: "'10.0.0.2/32'"
+        - name: EXTERN_ASTERISK_ADDR
+          value: '104.196.160.85:5060'
+        ports:
+         - containerPort: 5060
+           name: sip
