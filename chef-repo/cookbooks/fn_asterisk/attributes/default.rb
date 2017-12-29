@@ -23,7 +23,7 @@ default[:ipConsumer][:file]          = '/opt/proxyip.old'
 # Sip Proxy information
 default[:sip][:server][:username]    = 'ast'
 default[:sip][:server][:secret]      = 'N8p2exTu'
-default[:sip][:server][:host]        = 'fixme' # This will be updated by a cron process
+default[:sip][:server][:host]        = 'sip.fonoster.com'
 default[:sip][:server][:port]        = 5060
 
 # Astive Server
