@@ -2,8 +2,8 @@ apiVersion: v1draft1
 metadata:
   userAgent: Fonoster GW
 spec:
-  # WARNING: We must find a way to set this dynamically. Also, this will not work for agents using TCP.
-  externAddr: 35.185.80.191
+  externAddr: EXTERN_ADDR_PLACEHOLDER
+  localnets: [LOCALNETS_PLACEHOLDER]
   securityContext:
     keyStore: etc/certs/keystore.jks
     trustStore: etc/certs/keystore.jks
@@ -23,9 +23,9 @@ spec:
         username: rest
         secret: 'KN4k^^f%M]e66f~^'
     resources:
-      baseUrl: http://localhost:8080/v1/admin
+      baseUrl: RES_API_URL_PLACEHOLDER
       credentials:
-        username: admin
-        secret: 308a002ab539471394a06ce710bc96c2
+        username: <%= node[:sipio][:config][:res_api_username] %>
+        secret: <%= node[:sipio][:config][:res_api_secret] %>
   logging:
     traceLevel: 0

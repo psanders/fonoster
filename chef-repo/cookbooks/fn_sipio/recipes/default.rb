@@ -40,6 +40,14 @@ template "#{node['sipio']['home']}/config/peers.yml" do
   source 'peers.yml.erb'
 end
 
+template "#{node['sipio']['home']}/svc_config.sh" do
+  source 'svc_config.sh.erb'
+end
+
+execute "Change scripts mode" do
+  command "chmod +x #{node['sipio']['home']}/svc_config.sh"
+end
+
 execute "Update sipio.home owner" do
   command "chown -Rf #{node[:sipio][:user]}:#{node[:sipio][:group]} #{node[:sipio][:home]}"
 end
