@@ -6,10 +6,6 @@ metadata:
     app: fonoster
 spec:
   ports:
-  - name: fastagi
-    port: 4573
-  - name: ami
-    port: 5038
   - name: sip
     port: 5060
   selector:
