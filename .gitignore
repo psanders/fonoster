@@ -12,6 +12,7 @@
 .kitchen/*
 =======
 # fonoster
+etc/binaries
 nodes/
 clients/
 astivetoolkit/

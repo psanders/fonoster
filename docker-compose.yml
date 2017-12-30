@@ -1,10 +1,80 @@
-version: '2.1'
+version: '3.4'
 services:
-  fnast:
+  fndb:
     build:
       context: .
-      dockerfile: etc/docker-files/dockerfile-ast
-    image: gcr.io/fonoster-app/fnast:latest
+      dockerfile: etc/docker-files/fndb.df
+    image: gcr.io/fonoster-app/fndb:latest
+    environment:
+      FONOSTER_ENV: dev
+    ports:
+      - '27017:27017'
+  fnapi:
+    depends_on: [fndb]
+    build:
+      context: .
+      dockerfile: etc/docker-files/fnapi.df
+    image: gcr.io/fonoster-app/fnapi:latest
+    volumes:
+      - /tmp:/var/lib/fonoster/recordings
+      - /tmp:/var/lib/fonoster/tts
+    ports:
+      - '8080:8080'
+      - '8443:8443'
+    environment:
+      DB_HOST: fndb
+      MANAGER_HOST: fnasterisk
+      BRAINTREE_ENV: SANDBOX
+  fnwebconsole:
+    depends_on: [fnapi]
+    build:
+      context: .
+      dockerfile: etc/docker-files/fnwebconsole.df
+    image: gcr.io/fonoster-app/fnwebconsole:latest
+    environment:
+      DB_HOST: fndb
+      MANAGER_HOST: fnasterisk
+      BRAINTREE_ENV: SANDBOX
+    volumes:
+      - /tmp:/var/lib/fonoster/recordings
+      - /tmp:/var/lib/fonoster/tts
+    ports:
+      - '8081:8080'
+      - '8444:8443'
+  fnvoiceapps:
+    depends_on: [fnapi]
+    build:
+      context: .
+      dockerfile: etc/docker-files/fnvoiceapps.df
+    image: gcr.io/fonoster-app/fnvoiceapps:latest
+    environment:
+      DB_HOST: fndb
+    ports:
+      - '4573:4573'
+  fnsipproxy:
+    depends_on: [fnapi]
+    build:
+      context: .
+      dockerfile: etc/docker-files/fnsipproxy.df
+    image: gcr.io/fonoster-app/fnsipproxy:latest
+    environment:
+      RES_API_URL: http://fnapi:8080/v1/admin
+      EXTERN_ADDR: 192.168.1.2
+      LOCALNETS: "'10.0.0.2/32'"
+      EXTERN_ASTERISK_ADDR: '192.168.1.2:5060'
+    ports:
+      - '5060:5060'
+      - '5061:5061'
+      - '5062:5062'
+  fnasterisk:
+    build:
+      context: .
+      dockerfile: etc/docker-files/fnasterisk.df
+    image: gcr.io/fonoster-app/fnasterisk:latest
+    environment:
+      EXTERN_ADDR: 192.168.1.2:5060
+      LOCALNET: 10.0.0.0/32
+      APPS_SERVER_HOST: fnvoiceapps
     volumes:
       - /tmp:/var/lib/fonoster/recordings
       - /tmp:/var/lib/fonoster/tts
@@ -12,36 +82,3 @@ services:
       - '5038:5038'
       - '6060:6060'
       - '6060:6060/udp'
-  fnmongodb:
-    build:
-      context: .
-      dockerfile: etc/docker-files/dockerfile-mongodb
-    image: gcr.io/fonoster-app/fnmongodb:latest
-    environment:
-      FONOSTER_ENV: dev
-    ports:
-      - '27017:27017'
-  fnapp:
-    build:
-      context: .
-      dockerfile: etc/docker-files/dockerfile-appbase
-    image: gcr.io/fonoster-app/fnapp_base:latest
-    volumes:
-      - /tmp:/var/lib/fonoster/recordings
-      - /tmp:/var/lib/fonoster/tts
-      - /tmp:/opt/app-base/webapps
-      - /tmp:/opt/astive/apps
-    environment:
-      DB_HOST: fnmongodb
-      MANAGER_HOST: fnast
-      BRAINTREE_ENV: SANDBOX
-    ports:
-      - '4567:4567'
-      - '8080:8080'
-      - '8443:8443'
-      - '5060:5060'
-      - '5061:5061'
-      - '5062:5062'
-      - '5060:5060/udp'
-      - '5061:5061/udp'
-      - '5062:5062/udp'

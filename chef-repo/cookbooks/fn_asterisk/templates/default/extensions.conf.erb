@@ -6,5 +6,5 @@ exten => <%= node[:ast][:dialplan][:ext] %>,n(JUMP_1),Set(AMDSTATUS='UNKNOWN')
 exten => <%= node[:ast][:dialplan][:ext] %>,n,GotoIf(${amdEnabled}?:JUMP_2)
 exten => <%= node[:ast][:dialplan][:ext] %>,n,AMD
 exten => <%= node[:ast][:dialplan][:ext] %>,n(JUMP_2),Set(didNum=${CUT(CUT(CUT(SIP_HEADER(To),<,2),:,2),@,1)})
-exten => <%= node[:ast][:dialplan][:ext] %>,n,AGI(agi://<%= node[:astived][:host] %>:<%= node[:astived][:port] %>/fn/FonosterJS?didNum=${didNum}&callId=${callId}&amdStatus=${AMDSTATUS}&initDigits=${initDigits}&timeout=${timeout}&record=${record})
+exten => <%= node[:ast][:dialplan][:ext] %>,n,AGI(agi://APPS_SERVER_HOST_PLACEHOLDER:APPS_SERVER_PORT_PLACEHOLDER/fn/FonosterJS?didNum=${didNum}&callId=${callId}&amdStatus=${AMDSTATUS}&initDigits=${initDigits}&timeout=${timeout}&record=${record})
 exten => <%= node[:ast][:dialplan][:ext] %>,n,Hangup

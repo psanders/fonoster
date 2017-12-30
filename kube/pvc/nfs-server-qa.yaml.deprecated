@@ -1,0 +1,13 @@
+# PVC for mongo files
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc0002
+  labels:
+    app: fonoster
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi  # Just matching the pv storage size

@@ -36,18 +36,25 @@ spec:
       - name: fnvoiceapps
         image: gcr.io/fonoster-app/fnvoiceapps:latest
         imagePullPolicy: Always
+        command: ["/bin/sh"]
+        args: ["-c", "./bin/astived start && sleep infinity"]
         env:
         - name: DB_HOST
           value: datasys
         ports:
         - containerPort: 4573
           name: fastagi
+        volumeMounts:
+        - name: pd
+          mountPath: /var/lib/fonoster
       - name: fnasterisk
         image: gcr.io/fonoster-app/fnasterisk:latest
         imagePullPolicy: Always
         env:
-        - name: ASTIVED_HOST
-          value: localhost
+        - name: EXTERN_ADDR
+          value: 35.196.78.166:5060
+        - name: LOCALNET
+          value: 10.0.0.0/32
         ports:
         - containerPort: 5038
           name: ami

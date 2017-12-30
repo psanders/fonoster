@@ -7,7 +7,7 @@ default[:admin][:username]          = 'admin'
 default[:admin][:secret]            = '308a002ab539471394a06ce710bc96c2'
 
 # Asterisk Manager
-default[:ast][:manager][:host]       = 'fnast'
+default[:ast][:manager][:host]       = 'fnasterisk'
 default[:ast][:manager][:port]       = 5038
 default[:ast][:manager][:username]   = 'admin'
 default[:ast][:manager][:secret]     = '308a002ab539471394a06ce710bc96c2'
@@ -15,11 +15,11 @@ default[:ast][:dialplan][:context]   = 'fnus1'
 default[:ast][:dialplan][:ext]       = 'ast'
 
 # Astive Server
-default[:astived][:host]            = 'fnapp'
+default[:astived][:host]            = 'fnvoiceapps'
 default[:astived][:port]            = 4573
 
 # Mongo config
-default[:db][:host]                 = 'fnmongodb'
+default[:db][:host]                 = 'fndb'
 default[:db][:port]                 = 27017
 default[:db][:username]             = 'fonoster'
 default[:db][:secret]               = '308a002ab539471394a06ce710bc96c2'

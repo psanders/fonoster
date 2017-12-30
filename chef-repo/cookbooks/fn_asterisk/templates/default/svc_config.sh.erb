@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -e
+
+DEFAULT_APPS_SERVER_HOST=<%= node[:apps][:server][:host] %>
+DEFAULT_APPS_SERVER_PORT=<%= node[:apps][:server][:port] %>
+
+if [ -z "${APPS_SERVER_HOST}" ]; then
+  sed -i.bak "s|APPS_SERVER_HOST_PLACEHOLDER|${DEFAULT_APPS_SERVER_HOST}|g" /etc/asterisk/extensions.conf
+else
+  sed -i.bak "s|APPS_SERVER_HOST_PLACEHOLDER|${APPS_SERVER_HOST}|g" /etc/asterisk/extensions.conf
+fi
+
+if [ -z "${APPS_SERVER_PORT}" ]; then
+  sed -i.bak "s|APPS_SERVER_PORT_PLACEHOLDER|${DEFAULT_APPS_SERVER_PORT}|g" /etc/asterisk/extensions.conf
+else
+  sed -i.bak "s|APPS_SERVER_PORT_PLACEHOLDER|${APPS_SERVER_PORT}|g" /etc/asterisk/extensions.conf
+fi
+
+if [ -z "${EXTERN_ADDR}" ]; then
+  sed -i.bak "s|externAddr=EXTERN_ADDR_PLACEHOLDER||g" /etc/asterisk/sip.conf
+else
+  sed -i.bak "s|EXTERN_ADDR_PLACEHOLDER|${EXTERN_ADDR}|g" /etc/asterisk/sip.conf
+fi
+
+if [ -z "${LOCALNET}" ]; then
+  sed -i.bak "s|localnet=LOCALNET_PLACEHOLDER||g" /etc/asterisk/sip.conf
+else
+  sed -i.bak "s|LOCALNET_PLACEHOLDER|${LOCALNET}|g" /etc/asterisk/sip.conf
+fi
+

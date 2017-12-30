@@ -12,7 +12,4 @@ RUN /usr/bin/chef-solo -o "recipe[fn_jetty]" -c /var/chef-repo/solo.rb
 EXPOSE 8080
 EXPOSE 8443
 
-RUN chmod +x /var/chef-repo/etc/run_jetty.sh
-
-ENTRYPOINT ["/bin/sh"]
-CMD ["/var/chef-repo/etc/run_jetty.sh"]
+CMD ["service jetty start"]
