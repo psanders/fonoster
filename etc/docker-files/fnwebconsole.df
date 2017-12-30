@@ -7,7 +7,7 @@ RUN curl -L https://getchef.com/chef/install.sh | bash -s -- -v 12.9.41
 RUN apt-get -yq clean
 
 COPY chef-repo /var/chef-repo
-RUN /usr/bin/chef-solo -o "recipe[fn_jetty]" -c /var/chef-repo/solo.rb
+RUN /usr/bin/chef-solo -o "recipe[fn_commons::default],recipe[fn_commons::config],recipe[fn_jetty]" -c /var/chef-repo/solo.rb
 
 EXPOSE 8080
 EXPOSE 8443
