@@ -82,3 +82,10 @@ services:
       - '5038:5038'
       - '6060:6060'
       - '6060:6060/udp'
+  fnjetty:
+    build:
+      context: .
+      dockerfile: etc/docker-files/fnjetty.df
+    image: gcr.io/fonoster-app/fnjetty:latest
+    ports:
+      - '80:8080'
