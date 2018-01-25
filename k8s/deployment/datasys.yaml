@@ -33,7 +33,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: FONOSTER_ENV
-          value: prod               # If set to dev it will create the initial database (or dev db)
+          value: prod               # If set to dev it will bootstrap with some basic data
         ports:
         - containerPort: 27017
           name: mongodb
