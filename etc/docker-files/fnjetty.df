@@ -12,4 +12,4 @@ RUN /usr/bin/chef-solo -o "recipe[fn_jetty]" -c /var/chef-repo/solo.rb
 EXPOSE 8080
 EXPOSE 8443
 
-CMD ["service jetty start"]
+CMD ["/bin/sh", "-c", "service jetty start && sleep infinity"]
