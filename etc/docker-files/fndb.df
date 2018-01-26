@@ -1,4 +1,4 @@
-FROM debian:8.7
+FROM mongo:3.4
 MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
 
 RUN apt-get -yq update
@@ -11,7 +11,5 @@ RUN /usr/bin/chef-solo -o "recipe[fn_commons::users],recipe[fn_mongodb]" -c /var
 
 EXPOSE 27017
 
-RUN chmod +x /var/chef-repo/etc/run_mongodb.sh
-
 ENTRYPOINT ["/bin/sh"]
-CMD ["/var/chef-repo/etc/run_mongodb.sh"]
+CMD ["/run.sh"]
