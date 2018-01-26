@@ -1,1 +1,0 @@
-# The only difference between the production profile and qa is storage resources.
