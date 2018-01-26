@@ -1,0 +1,8 @@
+db.createUser(
+  {
+    user: "<%= node[:db][:username] %>",
+    pwd: "<%= node[:db][:secret] %>",
+    roles: [ { role: "readWrite", db: "<%= node[:db][:name] %>" },
+             { role: "read", db: "reporting" } ]
+  }
+);
