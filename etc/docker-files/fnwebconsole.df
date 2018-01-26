@@ -18,4 +18,5 @@ ADD etc/binaries/static/assets /opt/app-base/webapps/static/assets
 ADD etc/binaries/rest.xml      /opt/app-base/webapps
 ADD etc/binaries/rest.war      /opt/app-base/webapps
 
-CMD ["/bin/sh", "-c", "service jetty start && sleep infinity"]
+WORKDIR /opt/jetty
+CMD ["/bin/sh", "-c", "./bin/jetty.sh start && sleep infinity"]

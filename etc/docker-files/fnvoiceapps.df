@@ -14,4 +14,4 @@ EXPOSE 4573
 ADD etc/binaries/voice-fat.jar /opt/astive/apps
 
 WORKDIR /opt/astive
-CMD ["/bin/sh", "-c", "./bin/astived start"]
+CMD ["/bin/sh", "-c", "./bin/astived start && sleep infinity"]
