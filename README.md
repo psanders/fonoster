@@ -11,25 +11,14 @@ They are other requirements, but they are part of a package and should be mainta
 * GCloud SDK
 * Berks
 
-To run the infrastructure in your local environment you must "drop" the following files inside the '/tmp' of your host:
+## ENVs Variables
 
-- webui.xml -> /tmp/
-- webui.jar -> /tmp/
-- voice-fat.jar -> /tmp/
-- rest.xml -> /tmp/
-- rest.jar -> /tmp/
-- resources -> /tmp/static
-
-> The app will be running on http://localhost:8080
-
-## Environmental Variables
-
-All of the containers are loosely couple. They connect to each other via exposed services. The following environment 
+Containers are loosely couple. They connect to each other via exposed APIs or ports. The following environment
 variables can be use to replace the defaults:
 
 1. The environment 'ASTIVED_HOST' and 'ASTIVED_PORT' are use by fnast
 2. The MANAGER_HOST, MANAGER_PORT, DB_HOST and DB_PORT are use by fnapp to point to those services
-3. If the environment FONOSTER_ENV is found to be equal than 'dev' the database will be populated with test data
+3. If the environment FONOSTER_ENV is found to be equal than 'dev' the database will be boostraped with some test data
 
 ### Pushing the images to the Cloud
 
@@ -38,14 +27,20 @@ with something like: `gcloud docker -- push gcr.io/fonoster-app/image:1.0.{times
 
 ### NFS installation, configuration and maintenance
 
-Install a virtual machine provide by Google Cloud. Mount the folder(/mnt/disk0002) and ensure is own by nobody@nogroup. 
-Create a Job to change permissions of the recordings file, originally own by Asterisk, and changes permissions to nobody@nogroup. 
+Install a virtual machine using Google Cloud Launcher. Then go to:
 
-Cronjob
+    Compute Engine => VM instances => nfs-server
+
+And add the disk (disk0002). Then login using ssh and type "lsblk" to confirm that the disk is available.
+Mount the disk and ensure is own by nobody@nogroup.
+
+It also neccesary to change permissions to nobody@nogroup so that all readers/writers can access it.
+For that we need to create a job to change the permissions of the media files, originally own by Asterisk.
+
+Cronjob is as follows:
 
 ```
 * * * * * sh -c "chown -R nobody:nogroup /mnt/disk0002/recordings"
-* * * * * sh -c "chown -R nobody:nogroup /mnt/disk0002/qa/recordings"
 ```
 
-WARN: This will cause performance issues as we get more files on the server 
+Note: This will be unsusteinable as the amount of files grows.
