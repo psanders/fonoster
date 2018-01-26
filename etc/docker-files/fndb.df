@@ -1,4 +1,4 @@
-FROM mongo:3.4
+FROM mongo
 MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
 
 RUN apt-get -yq update
