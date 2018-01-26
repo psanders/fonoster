@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 repo=/var/chef-repo
-db=fonoster
 
 # Unrestricted while creating user
 mongod --config /etc/mongod.conf; sleep 3
-mongo $db /create-db-user.js
+mongo fonoster  /app-user.js
+mongo admin     /admin-user.js
 
 # Bootstrap the service for developers
 if [ "$FONOSTER_ENV" = "dev" ]

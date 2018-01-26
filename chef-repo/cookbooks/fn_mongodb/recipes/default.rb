@@ -5,15 +5,19 @@ cookbook_file "/run.sh" do
   mode '0755'
 end
 
+cookbook_file "/etc/mongod.conf" do
+  source "mongod.conf"
+end
+
 template "/bootstrap.sh" do
   source "bootstrap.sh.erb"
   mode '0755'
 end
 
-template "/etc/mongod.conf" do
-    source 'mongod.conf.erb'
+template "/admin-user.js" do
+  source "admin-user.js.erb"
 end
 
-template "/create-db-user.js" do
-  source "create-db-user.js.erb"
+template "/app-user.js" do
+  source "app-user.js.erb"
 end
