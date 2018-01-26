@@ -1,21 +1,19 @@
 # MongoDB
 
-bash 'add mongodb-org keyserver' do
-  code <<-EOH
-    KEY_LIST=$(apt-key list)
+cookbook_file "/run.sh" do
+  source "run.sh"
+  mode '0755'
+end
 
-    if echo "$KEY_LIST" | grep -q "#{node[:mongodb][:package][:key]}"; then
-      echo "Keyserver #{node[:mongodb][:package][:key]} is already installed";
-    else
-        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv #{node[:mongodb][:package][:key]}
-        echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/#{node[:mongodb][:package][:version]} multiverse" | tee /etc/apt/sources.list.d/mongodb-org-#{node[:mongodb][:package][:version]}.list
-        apt-get update
-        apt-get install -y mongodb-org
-    fi
-  EOH
+template "/bootstrap.sh" do
+  source "bootstrap.sh.erb"
+  mode '0755'
 end
 
 template "/etc/mongod.conf" do
     source 'mongod.conf.erb'
 end
 
+template "/create-db-user.js" do
+  source "create-db-user.js.erb"
+end
