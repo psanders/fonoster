@@ -32,8 +32,6 @@ spec:
       - name: fnvoiceapps
         image: gcr.io/fonoster-app/fnvoiceapps:latest
         imagePullPolicy: Always
-        command: ["/bin/sh"]
-        args: ["-c", "./bin/astived start && sleep infinity"]
         env:
         - name: DB_HOST
           value: datasys
