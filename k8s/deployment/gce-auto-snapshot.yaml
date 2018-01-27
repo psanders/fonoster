@@ -40,13 +40,26 @@ data:
        gcloud compute snapshots delete $SNAPSHOT_URI  --quiet
     done
     #
+
+    # Mailgun info
+    API_KEY=key-6b882d7dab7126118ac4456330a2dd75
+    DOMAIN_NAME=fonoster.com
+    USENAME=postmaster@fonoster.com
+    TO=sanderspedro@gmail.com
+
+    curl -s --user "api:$API_KEY" \
+        https://api.mailgun.net/v3/$DOMAIN_NAME/messages \
+        -F from="Fonoster Cron <$USENAME>" \
+        -F to=$TO \
+        -F subject='gce auto snapshot completed' \
+        -F text='Successfully created snapshots'
 ---
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: gce-auto-snapshot
 spec:
-  schedule: "0 0 * * *"
+  schedule: "0 */1 * * *"
   jobTemplate:
     spec:
       template:
