@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gcp-key.json
+data:
+  gcp-key.json: |-
+    {
+      "type": "service_account",
+      "project_id": "fonoster-app",
+      "private_key_id": "c4236fed20d61d498ed67a4e6d64439c8bfad8de",
+      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDCZjMz15vAVfhO\ny+JmvGVUAmXeSPR8QhSCxW4oUZUeSiVrWgk0UQqW/y+1+s6PYpmlHiH2xoHImsp1\nSTE86YG2flcJG26jo2/jMMwtCWrSgkTiwBRdZ79bz7/rwYRQlbAGQjEPzpA1z59X\nrtZGHn9+k+W9BgSa8jnMYOZEJ52rQ1stpRa0lVpcfZmzBhaXY2rukepjE3QgtGO4\nwa3rXDt8VXy83EzCBvwIqdIyGduUUJ/nRELp3HFeBC9YgIZC9cMlW78bO0657Wxt\nI/vhiDqfNJEG2vMyTKrfODBsxXlm31+FHWNJhO/SOMpwuv8CQcDj20azewxcVn/d\nnpAuVUsbAgMBAAECggEAGpXEadISFD8NiqUaTKd2CgOb78a1XKriyDF8y5nAlVhZ\nfrFc8eElXBoA6denWPeIgIq65VcnV4pHpruANs7ONOlZOL8eJdXLjtvVCFGx4KD9\nD69p+Y4fHsyt9+1KjYSzAmAZ+onqsdk3dtPLrOIt2F8ce3mvtorquZcE1ow+ZTW+\n2WG1cUqwIUcNXF01SjhtdOHLgH+Y7p9an+1FK0Ch/SRIdPJPaPPcU0QRQvJUJU4A\nZpjTTB02mmGJMe4+O40Bh09lXlw4qHujpnyOhMyxDnOAFFKW0IVFrofKcoILbKvn\nPkCRpDPbbD11/BuEd/oOBpmk181KCj0LoNB1TcyfkQKBgQD/Dhj+iwcFDEYp+nzl\nQhKF9MFY/8Qss//uKhla6dc235p649dg3rceJ/m70lKGB9FQ9g+/PZIcAtyCOQxZ\nVC5Y3xK4pPrraOPMt60T7pOkHGbW/ALHbgbDWplzNvBBJ2F1+1Gj4i1EiBEWmWyi\ntaDd9EcmMdz8MlMgRnCHxbZfEQKBgQDDHpMN+rybuSdLSmEDiKcQuek8XEQViEKv\nE3dgxdsv5G5pV0MYCh86v4da6Wi6t37RIbMNsYC9mIFdBIGGNrWPinRAPQz1e/XB\nET9K9+e5ZarSQURsLJWXNAdwaK0TYXVubOF5JOO9n+fp89ru9WUeCyMz9acX/V21\nisCTBRCfawKBgB7rjZomLpatE0B5jnSYmvhEYMAyWYz10VwFHIfJ+346g1bMkkq7\nFUYBoKPlbn2zKuv+uI/9nd3pduQOmHGn4+qAOJvL3GN3ls41ojTdYmatzsXXTVrx\n+r3qGNo/2cZ8SLNt4UrV25kISdIMjX/4NuVRfOKjft/QFgW+pFvBW0eRAoGAXtra\nOo2Oa1XTmHKMPx+LuEHo9QMVxjH72QjpnA4TxHCUjHlzkJg7HmBF+RhHZZ4W9Kwh\nU6LbJ1Cgcwvhu9GU6jcw1JnZVu3wRu+PiW6DJEochSJdlQkHn/4XL7pziVxzrj8Y\nTcB1RpYaNE3sPQbnJXfcoUHm/W6aw8q0W8S2lAkCgYEAqRaY9GG7K2ghuJikwYs/\nqI05obsaAoGyJx9uhGZ85q5vC4A9nIp0gH89eyN3kqa5DVxhJVRqhwVmYwxERlH2\nGfhShkZZIaoGuUw1NRa6CDDSJL4w9l73FeweiBz3X6a/Z/eg0+rN+MRbolaxZcQc\nGN7rvZrZ559KfnxLj+jNG4I=\n-----END PRIVATE KEY-----\n",
+      "client_email": "autoadmin@fonoster-app.iam.gserviceaccount.com",
+      "client_id": "114513700104456254173",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://accounts.google.com/o/oauth2/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/autoadmin%40fonoster-app.iam.gserviceaccount.com"
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: snapshot.sh
+data:
+  snapshot.sh: |-
+    #!/bin/bash
+    # loop through all disks within this project  and create a snapshot
+    DISK_PREFIX=disk
+    gcloud compute disks list --format='value(name,zone)' --filter="name~'$DISK_PREFIX*'"| while read DISK_NAME ZONE; do
+     gcloud compute disks snapshot $DISK_NAME --snapshot-names $DISK_NAME-$(date "+%Y-%m-%d-%s") --zone $ZONE
+    done
+
+    #
+    # snapshots are incremental and dont need to be deleted, deleting snapshots will merge snapshots, so deleting doesn't
+    # loose anything. But having too many snapshots is unwiedly so this script deletes them after 60 days
+    #
+    from_date=$(date -d "-60 days" "+%Y-%m-%d")
+
+    gcloud compute snapshots list --filter="creationTimestamp<$from_date AND name~'$DISK_PREFIX*'" --uri | while read SNAPSHOT_URI; do
+       gcloud compute snapshots delete $SNAPSHOT_URI  --quiet
+    done
+    #
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: gce-auto-snapshot
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: gce-auto-snapshot
+              image: google/cloud-sdk
+              imagePullPolicy: IfNotPresent
+              args:
+                - /bin/sh
+                - -c
+                - gcloud auth activate-service-account --key-file /credentials/gcp-key.json && bash /snapshot/snapshot.sh
+              volumeMounts:
+              - name: snapshot
+                mountPath: /snapshot
+              - name: gcp-key
+                mountPath: /credentials
+          volumes:
+          - name: gcp-key
+            configMap:
+              name: gcp-key.json
+          - name: snapshot
+            configMap:
+              name: snapshot.sh
