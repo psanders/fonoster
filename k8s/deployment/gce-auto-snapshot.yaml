@@ -49,7 +49,7 @@ data:
 
     curl -s --user "api:$API_KEY" \
         https://api.mailgun.net/v3/$DOMAIN_NAME/messages \
-        -F from="Fonoster Cron <$USENAME>" \
+        -F from="Fn Robot <$USENAME>" \
         -F to=$TO \
         -F subject='gce auto snapshot completed' \
         -F text='Successfully created snapshots'
@@ -59,7 +59,7 @@ kind: CronJob
 metadata:
   name: gce-auto-snapshot
 spec:
-  schedule: "0 */1 * * *"
+  schedule: "0 0 * * *"
   jobTemplate:
     spec:
       template:
