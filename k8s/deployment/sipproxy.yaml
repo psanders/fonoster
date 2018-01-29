@@ -10,7 +10,6 @@ spec:
   ports:
   - name: sip
     port: 5060
-    targetPort: 5060
   selector:
     app: fonoster
     tier: coms
