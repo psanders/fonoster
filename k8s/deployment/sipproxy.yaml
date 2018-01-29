@@ -5,6 +5,8 @@ metadata:
   labels:
     app: fonoster
 spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local # This will cause the load balancer to send the client ip
   ports:
   - name: sip
     port: 5060
@@ -12,7 +14,6 @@ spec:
   selector:
     app: fonoster
     tier: coms
-  type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -37,7 +38,7 @@ spec:
         - name: RES_API_URL
           value: http://webapp/v1/admin
         - name: EXTERN_ADDR
-          value: '35.196.78.166'
+          value: '35.196.229.6'
         - name: LOCALNETS
           value: "'10.0.0.2/32'"
         - name: EXTERN_ASTERISK_ADDR
