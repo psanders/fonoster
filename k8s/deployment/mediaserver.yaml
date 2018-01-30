@@ -46,7 +46,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: EXTERN_ADDR
-          value: 35.196.78.166:5060
+          value: 104.196.160.85:5060
         - name: LOCALNET
           value: 10.0.0.0/32
         ports:
