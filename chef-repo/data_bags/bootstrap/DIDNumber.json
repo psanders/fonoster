@@ -48,7 +48,7 @@
   "preferred":false,
   "user":{
     "$ref":"User",
-    "$id":"john@doe.com"
+    "$id":"sanderspedro@gmail.com"
   }
 }
 {
@@ -101,7 +101,7 @@
   "preferred":false,
   "user":{
     "$ref":"User",
-    "$id":"john@doe.com"
+    "$id":"sanderspedro@gmail.com"
   }
 }
 {
@@ -155,5 +155,58 @@
   "user":{
     "$ref":"User",
     "$id":"sanderspedro@gmail.com"
+  }
+}
+{
+  "_id":{
+    "$oid":"5a70b689a6224daeb1076889"
+  },
+  "className":"com.fonoster.model.DIDNumber",
+  "created":{
+    "t":{
+      "$numberLong":"1517317865000"
+    },
+    "z":"America/New_York"
+  },
+  "modified":{
+    "t":{
+      "$numberLong":"1517317865000"
+    },
+    "z":"America/New_York"
+  },
+  "gateway":{
+    "$ref":"Gateway",
+    "$id":{
+      "$oid":"507f191e810c19729de860ea"
+    }
+  },
+  "kind":"DID",
+  "metadata":{
+    "gwRef":"507f191e810c19729de860ea",
+    "ref":"5a70b689a6224daeb1076889",
+    "tech": {
+      "voice": true,
+      "sms": false,
+      "mms": false
+    },
+    "geoInfo":{
+      "countryISOCode":"US",
+      "country":"USA",
+      "city":"Charlotte, NC"
+    }
+  },
+  "apiVersion":"v1",
+  "status":"ACTIVE",
+  "spec":{
+    "location":{
+      "telUrl":"tel:7042002213",
+      "aorLink":"sip:ast@fnast"
+    }
+  },
+  "deleted":false,
+  "preferred":true,
+  "user":{
+    "$ref":"User",
+    "$id":"maher.elmasry@gmail.com"
   }
 }
