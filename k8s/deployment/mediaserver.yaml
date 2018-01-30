@@ -8,6 +8,8 @@ spec:
   ports:
   - name: sip
     port: 5060
+  - name: ami
+    port: 5038
   selector:
     app: fonoster
     tier: media
