@@ -10,18 +10,6 @@ else
   sed -i.bak "s|RES_API_URL_PLACEHOLDER|${RES_API_URL}|g" config/config.yml
 fi
 
-if [ -z "${EXTERN_ADDR}" ]; then
-  sed -i.bak "s|externAddr: EXTERN_ADDR_PLACEHOLDER||g" config/config.yml
-else
-  sed -i.bak "s|EXTERN_ADDR_PLACEHOLDER|${EXTERN_ADDR}|g" config/config.yml
-fi
-
-if [ -z "${LOCALNETS}" ]; then
-  sed -i.bak "s|localnets: \[LOCALNETS_PLACEHOLDER\]||g" config/config.yml
-else
-  sed -i.bak "s|LOCALNETS_PLACEHOLDER|${LOCALNETS}|g" config/config.yml
-fi
-
 if [ -z "${EXTERN_ASTERISK_ADDR}" ]; then
   sed -i.bak "s|contactAddr: EXTERN_ASTERISK_ADDR_PLACEHOLDER||g" config/peers.yml
 else
