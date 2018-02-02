@@ -38,8 +38,6 @@ spec:
           value: http://webapp/v1/admin
         - name: EXTERN_ADDR
           value: '35.196.229.6'
-        - name: LOCALNETS
-          value: "'10.0.0.2/32'"
         - name: EXTERN_ASTERISK_ADDR
           value: '104.196.160.85:5060'
         ports:
