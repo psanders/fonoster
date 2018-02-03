@@ -17,4 +17,4 @@ EXPOSE 5060
 ENV LANG C.UTF-8
 
 WORKDIR /opt/sipio
-CMD ["/bin/sh", "-c", "./svc_config.sh && ./sipio && sleep infinity"]
+CMD ["/bin/sh", "-c", "./svc_config.sh && ./run.sh && sleep infinity"]
