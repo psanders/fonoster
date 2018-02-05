@@ -70,7 +70,7 @@
   },
   "spec": {
     "regService": {
-      "host": "denver.voip.ms",
+      "host": "atlanta2.voip.ms",
       "transport": "tcp",
       "credentials": {
         "username": "215706",
