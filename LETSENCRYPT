@@ -1,4 +1,4 @@
-Lets Encrypt Step by Ste
+Lets Encrypt Step by Step
 
 Download and install `certbot` and then run the following steps
 
@@ -6,10 +6,19 @@ Download and install `certbot` and then run the following steps
 
 `sudo certbot certonly --manual --preferred-challenges dns`
 
-For this to work you will have to manually add dns entry. All generated files
-will be located at /etc/letsencrypt.
+The following domains must be included:
 
-2. Next step is to convert the certificate chain + private key to the PKCS#12 file format
+    - fonoster.com
+    - api.fonoster.com
+    - console.fonoster.com
+    - qa.fonoster.com
+    - sip.fonoster.com
+    - www.fonoster.com
+
+For this to work you will have to manually add dns entry. All generated files
+will be located at `/etc/letsencrypt/live/fonoster.com/`
+
+2. Convert the certificate chain + private key to the PKCS#12 file format
 and then put it into the Java keystore.
 
 `openssl pkcs12 -export -out keystore.pkcs12 -in fullchain.pem -inkey privkey.pem`
@@ -26,7 +35,4 @@ and
 
 (if you replace the parameter by an obfucasted string you can deobfuscate i.e "OBF:20771x1b206z")
 
-4. Install the file in te `etc` of jetty and update the start.ini
-
-
-NOTE: The following domains must be included => fonoster.com, api.fonoster.com, console.fonoster.com, qa.fonoster.com, sip.fonoster.com, www.fonoster.com
+4. Install `fonoster.keystore` in the `etc` of jetty and update the start.ini
