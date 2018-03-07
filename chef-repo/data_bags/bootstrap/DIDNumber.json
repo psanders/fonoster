@@ -48,7 +48,7 @@
   "preferred":false,
   "user":{
     "$ref":"User",
-    "$id":"sanderspedro@gmail.com"
+    "$id":"john@doe.com"
   }
 }
 {
@@ -101,7 +101,7 @@
   "preferred":false,
   "user":{
     "$ref":"User",
-    "$id":"sanderspedro@gmail.com"
+    "$id":"john@doe.com"
   }
 }
 {
@@ -154,7 +154,7 @@
   "preferred":false,
   "user":{
     "$ref":"User",
-    "$id":"sanderspedro@gmail.com"
+    "$id":"john@doe.com"
   }
 }
 {
@@ -207,6 +207,6 @@
   "preferred":true,
   "user":{
     "$ref":"User",
-    "$id":"maher.elmasry@gmail.com"
+    "$id":john@doe.com"
   }
 }
