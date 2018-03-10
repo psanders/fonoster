@@ -207,6 +207,6 @@
   "preferred":true,
   "user":{
     "$ref":"User",
-    "$id":john@doe.com"
+    "$id":"john@doe.com"
   }
 }
