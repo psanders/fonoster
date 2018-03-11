@@ -23,7 +23,8 @@
   "apiVersion": "v1",
   "kind": "Agent",
   "metadata": {
-    "name": "John Doe"
+    "name": "John Doe",
+    "ref": "591525da43def1148fae24ee"
   },
   "spec": {
     "credentials": {
@@ -60,7 +61,8 @@
   "apiVersion": "v1",
   "kind": "Agent",
   "metadata": {
-    "name": "Janie Doe"
+    "name": "Janie Doe",
+    "ref": "59152b1043def115946ab837"
   },
   "spec": {
     "credentials": {

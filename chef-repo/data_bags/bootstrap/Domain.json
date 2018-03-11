@@ -21,7 +21,8 @@
   "apiVersion": "v1",
   "kind": "Domain",
   "metadata": {
-    "name": "Ocean Sip Domain"
+    "name": "Ocean Sip Domain",
+    "ref": "sip%46ocean%46com"
   },
   "spec": {
     "context": {
