@@ -9,9 +9,3 @@ if [ -z "${RES_API_URL}" ]; then
 else
   sed -i.bak "s|RES_API_URL_PLACEHOLDER|${RES_API_URL}|g" config/config.yml
 fi
-
-if [ -z "${EXTERN_ASTERISK_ADDR}" ]; then
-  sed -i.bak "s|contactAddr: EXTERN_ASTERISK_ADDR_PLACEHOLDER||g" config/peers.yml
-else
-  sed -i.bak "s|EXTERN_ASTERISK_ADDR_PLACEHOLDER|${EXTERN_ASTERISK_ADDR}|g" config/peers.yml
-fi
