@@ -1,6 +1,12 @@
 version: '3.4'
 services:
+  fnbase:
+    build:
+      context: .
+      dockerfile: etc/docker-files/fnbase.df
+    image: gcr.io/fonoster-app/fnbase:latest
   fndb:
+    depends_on: [fnbase]
     build:
       context: .
       dockerfile: etc/docker-files/fndb.df
@@ -10,7 +16,7 @@ services:
     ports:
       - '27017:27017'
   fnapi:
-    depends_on: [fndb]
+    depends_on: [fnbase, fndb]
     build:
       context: .
       dockerfile: etc/docker-files/fnapi.df
@@ -26,7 +32,7 @@ services:
       MANAGER_HOST: fnasterisk
       BRAINTREE_ENV: SANDBOX
   fnwebconsole:
-    depends_on: [fnapi]
+    depends_on: [fnbase, fnapi]
     build:
       context: .
       dockerfile: etc/docker-files/fnwebconsole.df
@@ -42,7 +48,7 @@ services:
       - '8081:8080'
       - '8444:8443'
   fnvoiceapps:
-    depends_on: [fnapi]
+    depends_on: [fnbase,fnapi]
     build:
       context: .
       dockerfile: etc/docker-files/fnvoiceapps.df
@@ -52,7 +58,7 @@ services:
     ports:
       - '4573:4573'
   fnsipproxy:
-    depends_on: [fnapi]
+    depends_on: [fnbase, fnapi]
     build:
       context: .
       dockerfile: etc/docker-files/fnsipproxy.df
@@ -67,6 +73,7 @@ services:
       - '5061:5061'
       - '5062:5062'
   fnasterisk:
+    depends_on: [fnbase]
     build:
       context: .
       dockerfile: etc/docker-files/fnasterisk.df
@@ -83,6 +90,7 @@ services:
       - '6060:6060'
       - '6060:6060/udp'
   fnjetty:
+    depends_on: [fnbase]
     build:
       context: .
       dockerfile: etc/docker-files/fnjetty.df
