@@ -1,4 +1,21 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: peers.yml
+data:
+  peers.yml: |-
+    - apiVersion: v1draft1
+      kind: Peer
+      metadata:
+        name: Media Server
+      spec:
+        contactAddr: '104.196.160.85:5060'
+        device: 'fnast'
+        credentials:
+          username: ast
+          secret: N8p2exTu
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: sipproxy
@@ -31,15 +48,26 @@ spec:
     spec:
       containers:
       - name: fnsipproxy
-        image: gcr.io/fonoster-app/fnsipproxy:latest
+        image: fonoster/sipio
         imagePullPolicy: Always
+        #args:
+        #  - /bin/sh
+        #  - -c
+        #  - /opt/sipio/sipioctl apply -f /config/peers.yml && run.sh
         env:
-        - name: RES_API_URL
-          value: http://webapp/v1/admin
-        - name: EXTERN_ADDR
+        - name: SIPIO_DS_PROVIDER
+          value: "restful_data_provider"
+        - name: SIPIO_DS_PARAMETERS
+          value: "baseUrl=http://webapp/v1/ctl,username=admin,secret=308a002ab539471394a06ce710bc96c2"
+        - name: SIPIO_EXTERN_ADDR
           value: '35.196.229.6'
-        - name: EXTERN_ASTERISK_ADDR
-          value: '104.196.160.85:5060'
         ports:
          - containerPort: 5060
            name: sip
+        volumeMounts:
+        - name: peers
+          mountPath: /config
+      volumes:
+      - name: peers
+        configMap:
+          name: peers.yml

@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mediacontroller
+  labels:
+    app: fonoster
+spec:
+  ports:
+  - name: ami
+    port: 5038
+  selector:
+    app: fonoster
+    tier: media
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mediacontroller
+  labels:
+    app: fonoster
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fonoster
+        tier: media
+    spec:
+      containers:
+      - name: fnvoiceapps
+        image: fonoster/astive:latest
+        imagePullPolicy: Always
+        env:
+        - name: DB_HOST
+          value: dbsys
+        ports:
+        - containerPort: 4573
+          name: fastagi
+        volumeMounts:
+        - name: pd
+          mountPath: /var/lib/fonoster
+      volumes:
+      - name: pd
+        persistentVolumeClaim:
+          claimName: pvc0002

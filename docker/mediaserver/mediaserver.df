@@ -1,0 +1,37 @@
+FROM debian
+MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
+
+COPY run.sh /run.sh
+
+RUN apt-get -yq update \
+    && apt-get install -yq --no-install-recommends wget \
+        build-essential \
+        openssl \
+        libxml2-dev \
+        libncurses5-dev \
+        uuid-dev \
+        sqlite3 \
+        libsqlite3-dev \
+        pkg-config \
+        libjansson-dev \
+    && wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-14.5.0.tar.gz \
+    && tar xvf asterisk-14.5.0.tar.gz \
+    && cd asterisk-14.5.0 \
+    && ./configure \
+    && make \
+    && make install \
+    && make basic-pbx \
+    && rm -rf asterisk-14.5.0 \
+    && apt-get autoremove \
+    && apt-get -yq clean \
+    && apt-get remove -y wget build-essential libxml2-dev libncurses5-dev uuid-dev libsqlite3-dev pkg-config libjansson-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && chmod +x /run.sh
+
+# I copy this here to overwrite the default values
+COPY config/ /etc/asterisk/
+
+EXPOSE 5038
+EXPOSE 5060
+
+CMD ["/bin/sh", "-c", "/run.sh"]

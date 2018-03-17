@@ -1,0 +1,212 @@
+{
+  "_id":{
+    "$oid":"595bc68592bccf1454883d0c"
+  },
+  "className":"com.fonoster.model.DIDNumber",
+  "created":{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "modified":{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "gateway":{
+    "$ref":"Gateway",
+    "$id":{
+      "$oid":"595bc68492bccf1454883d0b"
+    }
+  },
+  "kind":"DID",
+  "metadata":{
+    "gwRef":"595bc68492bccf1454883d0b",
+    "ref":"595bc68592bccf1454883d0c",
+    "tech": {
+      "voice": true,
+      "sms": false,
+      "mms": false
+    },
+    "geoInfo":{
+      "countryISOCode":"US",
+      "country":"USA",
+      "city":"Columbus, GA"
+    }
+  },
+  "apiVersion":"v1",
+  "status":"ACTIVE",
+  "spec":{
+    "location":{
+      "telUrl":"tel:17066041487",
+      "aorLink":"sip:ast@fnast"
+    }
+  },
+  "deleted":false,
+  "preferred":false,
+  "user":{
+    "$ref":"User",
+    "$id":"john@doe.com"
+  }
+}
+{
+  "_id":{
+    "$oid":"58825a290eb4d4271a54f188"
+  },
+  "className":"com.fonoster.model.DIDNumber",
+  "created":{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "modified":{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "gateway":{
+    "$ref":"Gateway",
+    "$id":{
+      "$oid":"507f191e810c19729de860ea"
+    }
+  },
+  "kind":"DID",
+  "metadata":{
+    "gwRef":"507f191e810c19729de860ea",
+    "ref":"58825a290eb4d4271a54f188",
+    "tech": {
+      "voice": true,
+      "sms": false,
+      "mms": false
+    },
+    "geoInfo":{
+      "countryISOCode":"US",
+      "country":"USA",
+      "city":"Sanford, NC"
+    }
+  },
+  "apiVersion":"v1",
+  "status":"ACTIVE",
+  "spec":{
+    "location":{
+      "telUrl":"tel:9198972120",
+      "aorLink":"sip:ast@fnast"
+    }
+  },
+  "deleted":false,
+  "preferred":false,
+  "user":{
+    "$ref":"User",
+    "$id":"john@doe.com"
+  }
+}
+{
+  "_id":{
+    "$oid":"5272e0f00000000000000000"
+  },
+  "className":"com.fonoster.model.DIDNumber",
+  "created":{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "modified":{
+    "t":{
+      "$numberLong":"1499186821129"
+    },
+    "z":"America/Santo_Domingo"
+  },
+  "gateway":{
+    "$ref":"Gateway",
+    "$id":{
+      "$oid":"507f191e810c19729de860ea"
+    }
+  },
+  "kind":"DID",
+  "metadata":{
+    "gwRef":"507f191e810c19729de860ea",
+    "ref":"5272e0f00000000000000000",
+    "tech": {
+      "voice": true,
+      "sms": false,
+      "mms": false
+    },
+    "geoInfo":{
+      "countryISOCode":"DO",
+      "country":"Dominican Republic",
+      "city":"Sanford, NC"
+    }
+  },
+  "apiVersion":"v1",
+  "status":"ACTIVE",
+  "spec":{
+    "location":{
+      "telUrl":"tel:18299471325",
+      "aorLink":"sip:ast@fnast"
+    }
+  },
+  "deleted":false,
+  "preferred":false,
+  "user":{
+    "$ref":"User",
+    "$id":"john@doe.com"
+  }
+}
+{
+  "_id":{
+    "$oid":"5a70b689a6224daeb1076889"
+  },
+  "className":"com.fonoster.model.DIDNumber",
+  "created":{
+    "t":{
+      "$numberLong":"1517317865000"
+    },
+    "z":"America/New_York"
+  },
+  "modified":{
+    "t":{
+      "$numberLong":"1517317865000"
+    },
+    "z":"America/New_York"
+  },
+  "gateway":{
+    "$ref":"Gateway",
+    "$id":{
+      "$oid":"507f191e810c19729de860ea"
+    }
+  },
+  "kind":"DID",
+  "metadata":{
+    "gwRef":"507f191e810c19729de860ea",
+    "ref":"5a70b689a6224daeb1076889",
+    "tech": {
+      "voice": true,
+      "sms": false,
+      "mms": false
+    },
+    "geoInfo":{
+      "countryISOCode":"US",
+      "country":"USA",
+      "city":"Charlotte, NC"
+    }
+  },
+  "apiVersion":"v1",
+  "status":"ACTIVE",
+  "spec":{
+    "location":{
+      "telUrl":"tel:7042002213",
+      "aorLink":"sip:ast@fnast"
+    }
+  },
+  "deleted":false,
+  "preferred":true,
+  "user":{
+    "$ref":"User",
+    "$id":"john@doe.com"
+  }
+}

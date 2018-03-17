@@ -8,8 +8,6 @@ spec:
   ports:
   - name: sip
     port: 5060
-  - name: ami
-    port: 5038
   selector:
     app: fonoster
     tier: media
@@ -31,25 +29,13 @@ spec:
         tier: media
     spec:
       containers:
-      - name: fnvoiceapps
-        image: gcr.io/fonoster-app/fnvoiceapps:latest
-        imagePullPolicy: Always
-        env:
-        - name: DB_HOST
-          value: datasys
-        ports:
-        - containerPort: 4573
-          name: fastagi
-        volumeMounts:
-        - name: pd
-          mountPath: /var/lib/fonoster
       - name: fnasterisk
         image: gcr.io/fonoster-app/fnasterisk:latest
         imagePullPolicy: Always
         env:
-        - name: EXTERN_ADDR
+        - name: ASTERISK_EXTERN_ADDR
           value: 104.196.160.85:5060
-        - name: LOCALNET
+        - name: ASTERISK_LOCALNET
           value: 10.0.0.0/32
         ports:
         - containerPort: 5038

@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: gcr.io/fonoster-app/fnwebconsole:latest
+        image: gcr.io/fonoster-app/webapp:latest
         imagePullPolicy: Always
         env:
         - name: DB_HOST

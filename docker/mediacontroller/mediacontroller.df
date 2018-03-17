@@ -1,0 +1,14 @@
+FROM fonoster/astive
+MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
+
+COPY common/fonoster.conf                 /etc/fonoster.conf
+COPY mediacontroller/astived.properties   $ASTIVE_HOME/conf/astived.properties
+COPY binaries/voice-fat.jar               $ASTIVE_APPS
+
+RUN apk update \
+    && apk add lame ffmpeg \
+    && rm -rf /var/cache/apk/*
+
+EXPOSE 4573
+EXPOSE 4200
+EXPOSE 4202

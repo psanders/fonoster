@@ -1,0 +1,32 @@
+{
+  "_id": {
+    "$oid": "5aa5cec1bf394f0fbe27a2ac"
+  },
+  "className": "com.fonoster.model.Peer",
+  "created": {
+    "t": {
+      "$numberLong": "1494558170860"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "modified": {
+    "t": {
+      "$numberLong": "1494558170841"
+    },
+    "z": "America/Santo_Domingo"
+  },
+  "deleted": false,
+  "apiVersion": "v1",
+  "kind": "Peer",
+  "metadata": {
+    "name": "Media Server",
+    "ref": "5aa5cec1bf394f0fbe27a2ac"
+  },
+  "spec": {
+    "device": "fnast",
+    "credentials": {
+      "username": "ast",
+      "secret": "N8p2exTu"
+    }
+  }
+}

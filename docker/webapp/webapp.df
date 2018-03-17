@@ -1,0 +1,23 @@
+FROM jetty:alpine
+MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
+
+COPY common/fonoster.conf  /etc/fonoster.conf
+COPY webapp/keystore       $JETTY_BASE/etc/keystore
+COPY webapp/start.ini      $JETTY_BASE/start.ini
+COPY binaries/webui.xml    $JETTY_BASE/webapps
+COPY binaries/webui.war    $JETTY_BASE/webapps
+COPY binaries/static       $JETTY_BASE/webapps/static
+COPY binaries/rest.xml     $JETTY_BASE/webapps
+COPY binaries/rest.war     $JETTY_BASE/webapps
+COPY binaries/rest.war     $JETTY_BASE/webapps
+
+USER root
+RUN apk update \
+    && apk add lame ffmpeg \
+    && rm -rf /var/cache/apk/*  # TODO: Lock lame and ffmpeg version
+USER jetty
+
+EXPOSE 8080
+EXPOSE 8443
+
+

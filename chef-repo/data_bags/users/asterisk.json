@@ -1,5 +1,0 @@
-{
-	"id":"asterisk",
-	"groups": ["asterisk"],
-	"shell": "\/sbin\/nologin"
-}

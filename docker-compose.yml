@@ -1,99 +1,66 @@
 version: '3.4'
 services:
-  fnbase:
+  dbsys:
     build:
-      context: .
-      dockerfile: etc/docker-files/fnbase.df
-    image: gcr.io/fonoster-app/fnbase:latest
-  fndb:
-    depends_on: [fnbase]
-    build:
-      context: .
-      dockerfile: etc/docker-files/fndb.df
-    image: gcr.io/fonoster-app/fndb:latest
+      context: docker/dbsys
+      dockerfile: dbsys.df
+    image: gcr.io/fonoster-app/dbsys:latest
     environment:
       FONOSTER_ENV: dev
     ports:
       - '27017:27017'
-  fnapi:
-    depends_on: [fnbase, fndb]
+  webapp:
+    depends_on: [dbsys]
     build:
-      context: .
-      dockerfile: etc/docker-files/fnapi.df
-    image: gcr.io/fonoster-app/fnapi:latest
-    volumes:
-      - /tmp:/var/lib/fonoster/recordings
-      - /tmp:/var/lib/fonoster/tts
+      context: docker
+      dockerfile: webapp/webapp.df
+    image: gcr.io/fonoster-app/webapp:latest
     ports:
       - '8080:8080'
       - '8443:8443'
-    environment:
-      DB_HOST: fndb
-      MANAGER_HOST: fnasterisk
-      BRAINTREE_ENV: SANDBOX
-  fnwebconsole:
-    depends_on: [fnbase, fnapi]
-    build:
-      context: .
-      dockerfile: etc/docker-files/fnwebconsole.df
-    image: gcr.io/fonoster-app/fnwebconsole:latest
-    environment:
-      DB_HOST: fndb
-      MANAGER_HOST: fnasterisk
-      BRAINTREE_ENV: SANDBOX
     volumes:
       - /tmp:/var/lib/fonoster/recordings
       - /tmp:/var/lib/fonoster/tts
-    ports:
-      - '8081:8080'
-      - '8444:8443'
-  fnvoiceapps:
-    depends_on: [fnbase,fnapi]
+  mediaserver:
     build:
-      context: .
-      dockerfile: etc/docker-files/fnvoiceapps.df
-    image: gcr.io/fonoster-app/fnvoiceapps:latest
+      context: docker/mediaserver
+      dockerfile: mediaserver.df
+    image: gcr.io/fonoster-app/mediaserver:latest
     environment:
-      DB_HOST: fndb
-    ports:
-      - '4573:4573'
-  fnsipproxy:
-    depends_on: [fnbase, fnapi]
-    build:
-      context: .
-      dockerfile: etc/docker-files/fnsipproxy.df
-    image: gcr.io/fonoster-app/fnsipproxy:latest
-    environment:
-      RES_API_URL: http://fnapi:8080/v1/admin
-      EXTERN_ADDR: 192.168.1.2
-      LOCALNETS: "'10.0.0.2/32'"
-      EXTERN_ASTERISK_ADDR: '192.168.1.2:5060'
-    ports:
-      - '5060:5060'
-      - '5061:5061'
-      - '5062:5062'
-  fnasterisk:
-    depends_on: [fnbase]
-    build:
-      context: .
-      dockerfile: etc/docker-files/fnasterisk.df
-    image: gcr.io/fonoster-app/fnasterisk:latest
-    environment:
-      EXTERN_ADDR: 192.168.1.2:5060
-      LOCALNET: 10.0.0.0/32
-      APPS_SERVER_HOST: fnvoiceapps
+      ASTERISK_EXTERN_ADDR: 192.168.1.2
+      ASTERISK_SIPPROXY_HOST: sipproxy
+      ASTERISK_SIPPROXY_USERNAME: ast
+      ASTERISK_SIPPROXY_SECRET: N8p2exTu
+      ASTERISK_FASTAGI_HOST: mediacontroller
+      ASTERISK_MANAGER_SECRET: 308a002ab539471394a06ce710bc96c2
     volumes:
       - /tmp:/var/lib/fonoster/recordings
       - /tmp:/var/lib/fonoster/tts
     ports:
       - '5038:5038'
-      - '6060:6060'
-      - '6060:6060/udp'
-  fnjetty:
-    depends_on: [fnbase]
+  mediacontroller:
+    depends_on: [dbsys]
     build:
-      context: .
-      dockerfile: etc/docker-files/fnjetty.df
-    image: gcr.io/fonoster-app/fnjetty:latest
+      context: docker
+      dockerfile: mediacontroller/mediacontroller.df
+    image: gcr.io/fonoster-app/mediacontroller:latest
+    volumes:
+      - /tmp:/var/lib/fonoster/recordings
+      - /tmp:/var/lib/fonoster/tts
     ports:
-      - '80:8080'
+      - '4573:4573'
+      - '4200:4200'
+      - '4202:4202'
+  sipproxy:
+    environment:
+      - SIPIO_EXTERN_ADDR=192.168.1.2
+      - SIPIO_DS_PROVIDER=restful_data_provider
+      - SIPIO_DS_PARAMETERS=baseUrl=http://webapp:8080/v1/ctl,username=admin,secret=308a002ab539471394a06ce710bc96c2
+    image: fonoster/sipio:latest
+    ports:
+      - '5060:5060'
+      - '5060:5060/udp'
+      - '5061:5061'
+      - '5062:5062'
+      - '5063:5063'
+      - '4567:4567'
