@@ -8,6 +8,8 @@ spec:
   ports:
   - name: sip
     port: 5060
+  - name: ami
+    port: 5038
   selector:
     app: fonoster
     tier: media
@@ -30,13 +32,21 @@ spec:
     spec:
       containers:
       - name: fnasterisk
-        image: gcr.io/fonoster-app/fnasterisk:latest
+        image: gcr.io/fonoster-app/mediaserver:latest
         imagePullPolicy: Always
         env:
         - name: ASTERISK_EXTERN_ADDR
           value: 104.196.160.85:5060
-        - name: ASTERISK_LOCALNET
-          value: 10.0.0.0/32
+        - name: ASTERISK_SIPPROXY_HOST
+          value: sipproxy
+        - name: ASTERISK_SIPPROXY_USERNAME
+          value: ast
+        - name: ASTERISK_SIPPROXY_SECRET
+          value: N8p2exTu
+        - name: ASTERISK_FASTAGI_HOST
+          value: mediacontroller
+        - name: ASTERISK_MANAGER_SECRET
+          value: 308a002ab539471394a06ce710bc96c2
         ports:
         - containerPort: 5038
           name: ami

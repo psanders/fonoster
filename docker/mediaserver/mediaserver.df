@@ -16,6 +16,7 @@ RUN apt-get -yq update \
         libjansson-dev \
     && wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-14.5.0.tar.gz \
     && tar xvf asterisk-14.5.0.tar.gz \
+    && rm asterisk-14.5.0.tar.gz \
     && cd asterisk-14.5.0 \
     && ./configure \
     && make \

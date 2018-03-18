@@ -38,7 +38,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: DB_HOST
-          value: datasys
+          value: dbsys
         - name: MANAGER_HOST
           value: mediaserver
         ports:

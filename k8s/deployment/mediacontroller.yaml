@@ -6,12 +6,12 @@ metadata:
     app: fonoster
 spec:
   ports:
-  - name: ami
-    port: 5038
+  - name: fastagi
+    port: 4573
   selector:
     app: fonoster
     tier: media
-  type: LoadBalancer
+  clusterIP: None
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -29,8 +29,8 @@ spec:
         tier: media
     spec:
       containers:
-      - name: fnvoiceapps
-        image: fonoster/astive:latest
+      - name: mediacontroller
+        image: gcr.io/fonoster-app/mediacontroller:latest
         imagePullPolicy: Always
         env:
         - name: DB_HOST
