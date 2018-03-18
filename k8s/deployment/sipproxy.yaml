@@ -1,21 +1,4 @@
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: peers.yml
-data:
-  peers.yml: |-
-    - apiVersion: v1draft1
-      kind: Peer
-      metadata:
-        name: Media Server
-      spec:
-        contactAddr: '104.196.160.85:5060'
-        device: 'fnast'
-        credentials:
-          username: ast
-          secret: N8p2exTu
----
-apiVersion: v1
 kind: Service
 metadata:
   name: sipproxy
@@ -27,6 +10,8 @@ spec:
   ports:
   - name: sip
     port: 5060
+  - name: https
+    port: 4567
   selector:
     app: fonoster
     tier: coms
@@ -50,10 +35,6 @@ spec:
       - name: fnsipproxy
         image: fonoster/sipio
         imagePullPolicy: Always
-        #args:
-        #  - /bin/sh
-        #  - -c
-        #  - /opt/sipio/sipioctl apply -f /config/peers.yml && run.sh
         env:
         - name: SIPIO_DS_PROVIDER
           value: "restful_data_provider"
@@ -64,10 +45,5 @@ spec:
         ports:
          - containerPort: 5060
            name: sip
-        volumeMounts:
-        - name: peers
-          mountPath: /config
-      volumes:
-      - name: peers
-        configMap:
-          name: peers.yml
+         - containerPort: 4567
+           name: https
