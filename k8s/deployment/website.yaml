@@ -14,7 +14,7 @@ spec:
       targetPort: 8443
     selector:
       app: fonoster
-      tier: frontend
+      tier: homepage
     type: LoadBalancer
 ---
 apiVersion: extensions/v1beta1
@@ -30,7 +30,7 @@ spec:
     metadata:
       labels:
         app: fonoster
-        tier: frontend
+        tier: homepage
     spec:
       containers:
       - name: website
@@ -39,3 +39,5 @@ spec:
         ports:
         - containerPort: 8080
           name: http
+        - containerPort: 8443
+          name: https
