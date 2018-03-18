@@ -12,11 +12,9 @@
 .kitchen/*
 =======
 # fonoster
-etc/binaries
+ops/docker/binaries
 nodes/
 clients/
-astivetoolkit/
-berks-cookbooks/
 # eclipse
 .classpath
 .project
