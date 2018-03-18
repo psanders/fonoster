@@ -1,4 +1,22 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sipproxy-config
+data:
+  config.yml: |-
+    apiVersion: v1draft1
+    spec:
+      restService:
+        unsecured: true
+      transport:
+        - protocol: udp
+          port: 5060
+        - protocol: tcp
+          port: 5060
+      logging:
+        traceLevel: 0
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: sipproxy
@@ -32,9 +50,13 @@ spec:
         tier: coms
     spec:
       containers:
-      - name: fnsipproxy
+      - name: sipproxy
         image: fonoster/sipio
         imagePullPolicy: Always
+        args:
+          - /bin/sh
+          - -c
+          - cp /config/config.yml /opt/sipio/config && /opt/sipio/run.sh
         env:
         - name: SIPIO_DS_PROVIDER
           value: "restful_data_provider"
@@ -47,3 +69,10 @@ spec:
            name: sip
          - containerPort: 4567
            name: https
+        volumeMounts:
+          - name: sipproxy-config
+            mountPath: /config
+      volumes:
+      - name: sipproxy-config
+        configMap:
+          name: sipproxy-config
