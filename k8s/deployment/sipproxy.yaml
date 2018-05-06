@@ -63,7 +63,7 @@ spec:
         - name: SIPIO_DS_PARAMETERS
           value: "baseUrl=http://webapp/v1/ctl,username=admin,secret=308a002ab539471394a06ce710bc96c2"
         - name: SIPIO_EXTERN_ADDR
-          value: '35.196.229.6'
+          value: '35.231.44.240'
         ports:
          - containerPort: 5060
            name: sip
