@@ -7,6 +7,7 @@ data:
     apiVersion: v1draft1
     spec:
       recordRoute: true
+      registrarIntf: Internal
       restService:
         unsecured: true
       transport:
