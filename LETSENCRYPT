@@ -6,14 +6,7 @@ Download and install `certbot` and then run the following steps
 
 `sudo certbot certonly --manual --preferred-challenges dns`
 
-The following domains must be included:
-
-    - fonoster.com
-    - api.fonoster.com
-    - console.fonoster.com
-    - qa.fonoster.com
-    - sip.fonoster.com
-    - www.fonoster.com
+The following domains must be included: fonoster.com,api.fonoster.com,console.fonoster.com,qa.fonoster.com,sip.fonoster.com,www.fonoster.com
 
 For this to work you will have to manually add dns entry. All generated files
 will be located at `/etc/letsencrypt/live/fonoster.com/`

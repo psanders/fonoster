@@ -8,6 +8,7 @@ data:
     spec:
       recordRoute: true
       registrarIntf: Internal
+      useToAsAOR: true
       restService:
         unsecured: true
       transport:
