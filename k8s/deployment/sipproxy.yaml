@@ -6,6 +6,7 @@ data:
   config.yml: |-
     apiVersion: v1draft1
     spec:
+      recordRoute: true
       restService:
         unsecured: true
       transport:
