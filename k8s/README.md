@@ -1,4 +1,4 @@
-Fonoster with Kubernetes
+Running Fonoster in K8S
 =========================
 
 Create disk
@@ -10,7 +10,7 @@ Create the Disk,PersistentVolume and PersistentVolumeClaim for MongoDB storage a
 `gcloud compute disks create --size=200GB --zone=us-east1-b disk0002`
 
 
-Create PV and PVC 
+Create PV and PVC
 -----------------
 
 Create PersistantVolume and PersistantVolumeClain for MongoDB and the NFS by running the following steps:
