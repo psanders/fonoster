@@ -1,4 +1,4 @@
-// Use: mongo fonoster -u fonoster -p "password" --quiet emails.js > emails.txt
+// Use: mongo fonoster -u fonoster -p "password" --quiet list-users.js > emails.txt
 
 var cursor = db.User.find({}, {email: 1, firstName: 1, lastName: 1});
 
