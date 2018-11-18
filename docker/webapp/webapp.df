@@ -1,7 +1,7 @@
 FROM jetty:alpine
 MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
 
-COPY etc/fonoster.conf  /etc/fonoster.conf
+COPY etc/fonoster.conf            /etc/fonoster.conf
 COPY docker/webapp/keystore       $JETTY_BASE/etc/keystore
 COPY docker/webapp/start.ini      $JETTY_BASE/start.ini
 COPY docker/binaries/webui.xml    $JETTY_BASE/webapps

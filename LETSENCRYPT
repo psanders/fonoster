@@ -26,6 +26,6 @@ and
 
 `java -cp lib/jetty-util-xxx.jar org.eclipse.jetty.util.security.Password thepassword`
 
-(if you replace the parameter by an obfucasted string you can deobfuscate i.e "OBF:20771x1b206z")
+(if you replace the parameter by an obfuscated string you can deobfuscate i.e "OBF:20771x1b206z")
 
 4. Install the `keystore` in the `etc` of jetty and update the start.ini

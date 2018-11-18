@@ -37,7 +37,6 @@ build() {
 	    docker tag gcr.io/fonoster-app/mediacontroller:latest gcr.io/fonoster-app/mediacontroller:$VERSION
 	fi
 
-	cd ..
 	echo $VERSION > .manifest
 }
 
