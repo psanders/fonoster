@@ -18,7 +18,7 @@ and then put it into the Java keystore.
 
 and
 
-`keytool -importkeystore -srckeystore keystore.pkcs12 -srcstoretype PKCS12 -destkeystore fonoster.keystore`
+`keytool -importkeystore -srckeystore keystore.pkcs12 -srcstoretype PKCS12 -destkeystore keystore`
 
 (you can remove keystore.pkcs12 is not needed anymore)
 
@@ -28,4 +28,4 @@ and
 
 (if you replace the parameter by an obfucasted string you can deobfuscate i.e "OBF:20771x1b206z")
 
-4. Install `fonoster.keystore` in the `etc` of jetty and update the start.ini
+4. Install the `keystore` in the `etc` of jetty and update the start.ini
