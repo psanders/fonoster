@@ -12,8 +12,8 @@ services:
   webapp:
     depends_on: [dbsys]
     build:
-      context: docker
-      dockerfile: webapp/webapp.df
+      context: .
+      dockerfile: docker/webapp/webapp.df
     image: gcr.io/fonoster-app/webapp:latest
     ports:
       - '8080:8080'
@@ -41,8 +41,8 @@ services:
   mediacontroller:
     depends_on: [dbsys]
     build:
-      context: docker
-      dockerfile: mediacontroller/mediacontroller.df
+      context: .
+      dockerfile: docker/mediacontroller/mediacontroller.df
     image: gcr.io/fonoster-app/mediacontroller:latest
     volumes:
       - /tmp:/var/lib/fonoster/recordings

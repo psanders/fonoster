@@ -1,9 +1,9 @@
 FROM fonoster/astive
 MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
 
-COPY common/fonoster.conf                 /etc/fonoster.conf
-COPY mediacontroller/astived.properties   $ASTIVE_HOME/conf/astived.properties
-COPY binaries/voice-fat.jar               $ASTIVE_APPS
+COPY etc/fonoster.conf                           /etc/fonoster.conf
+COPY docker/mediacontroller/astived.properties   $ASTIVE_HOME/conf/astived.properties
+COPY docker/binaries/voice-fat.jar               $ASTIVE_APPS
 
 RUN apk update \
     && apk add lame ffmpeg \

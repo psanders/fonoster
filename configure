@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+git submodule add https://github.com/psanders/app app && cd app && ./build.sh && cd..
+#git clone https://github.com/psanders/app && cd app && ./build.sh && cd ..
+mkdir -p docker/binaries
+mkdir -p docker/binaries/static/assets/
+cp app/voice/build/libs/voice-fat.jar      docker/binaries
+cp app/webui/build/libs/webui.war          docker/binaries
+cp app/webui/src/main/resources/web.xml    docker/binaries
+cp app/webui/src/main/resources/webui.xml  docker/binaries
+cp app/rest/src/main/resources/rest.xml    docker/binaries
+cp app/rest/build/libs/rest.war            docker/binaries
+cp -a app/resources/src/main/resources/META-INF/resources/assets/* docker/binaries/static/assets

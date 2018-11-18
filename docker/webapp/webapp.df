@@ -1,15 +1,15 @@
 FROM jetty:alpine
 MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
 
-COPY common/fonoster.conf  /etc/fonoster.conf
-COPY webapp/keystore       $JETTY_BASE/etc/keystore
-COPY webapp/start.ini      $JETTY_BASE/start.ini
-COPY binaries/webui.xml    $JETTY_BASE/webapps
-COPY binaries/webui.war    $JETTY_BASE/webapps
-COPY binaries/static       $JETTY_BASE/webapps/static
-COPY binaries/rest.xml     $JETTY_BASE/webapps
-COPY binaries/rest.war     $JETTY_BASE/webapps
-COPY binaries/rest.war     $JETTY_BASE/webapps
+COPY etc/fonoster.conf  /etc/fonoster.conf
+COPY docker/webapp/keystore       $JETTY_BASE/etc/keystore
+COPY docker/webapp/start.ini      $JETTY_BASE/start.ini
+COPY docker/binaries/webui.xml    $JETTY_BASE/webapps
+COPY docker/binaries/webui.war    $JETTY_BASE/webapps
+COPY docker/binaries/static       $JETTY_BASE/webapps/static
+COPY docker/binaries/rest.xml     $JETTY_BASE/webapps
+COPY docker/binaries/rest.war     $JETTY_BASE/webapps
+COPY docker/binaries/rest.war     $JETTY_BASE/webapps
 
 USER root
 RUN apk update \

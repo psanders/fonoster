@@ -54,18 +54,18 @@ spec:
     spec:
       containers:
       - name: sipproxy
-        image: fonoster/sipio
+        image: fonoster/routr
         imagePullPolicy: Always
         args:
           - /bin/sh
           - -c
-          - cp /config/config.yml /opt/sipio/config && /opt/sipio/run.sh
+          - cp /config/config.yml /opt/routr/config && /opt/routr/run.sh
         env:
-        - name: SIPIO_DS_PROVIDER
+        - name: ROUTR_DS_PROVIDER
           value: "restful_data_provider"
-        - name: SIPIO_DS_PARAMETERS
+        - name: ROUTR_DS_PARAMETERS
           value: "baseUrl=http://webapp/v1/ctl,username=admin,secret=308a002ab539471394a06ce710bc96c2"
-        - name: SIPIO_EXTERN_ADDR
+        - name: ROUTR_EXTERN_ADDR
           value: '35.231.44.240'
         ports:
          - containerPort: 5060
