@@ -1,4 +1,4 @@
-FROM mvertes/alpine-mongo:3.6.3-0
+FROM mvertes/alpine-mongo:4.0.3-0
 MAINTAINER Pedro Sanders <fonosterteam@fonoster.com>
 
 COPY bootstrap /bootstrap
@@ -6,7 +6,7 @@ COPY *.sh /
 COPY create-mongodb-user.js /create-mongodb-user.js
 COPY mongod.conf /etc/mongod.conf
 
-RUN apk add mongodb-tools && chmod +x run.sh
+RUN apk upgrade && apk add mongodb-tools && chmod +x run.sh
 
 EXPOSE 27017
 
