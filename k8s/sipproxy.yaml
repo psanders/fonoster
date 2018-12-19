@@ -56,10 +56,8 @@ spec:
       - name: sipproxy
         image: fonoster/routr
         imagePullPolicy: Always
-        args:
-          - /bin/sh
-          - -c
-          - cp /config/config.yml /opt/routr/config && /opt/routr/run.sh
+        command: ["/bin/sh"]
+        args: ["-c", "sh /opt/routr/run.sh"]
         env:
         - name: ROUTR_DS_PROVIDER
           value: "restful_data_provider"
@@ -74,7 +72,8 @@ spec:
            name: https
         volumeMounts:
           - name: sipproxy-config
-            mountPath: /config
+            subPath: config.yml
+            mountPath: /opt/routr/config
       volumes:
       - name: sipproxy-config
         configMap:
